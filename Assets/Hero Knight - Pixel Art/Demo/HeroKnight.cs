@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class HeroKnight : MonoBehaviour {
 
     [SerializeField] float      m_speed = 4.0f;
+    [SerializeField] float      m_fallSpeed = 5f;
     [SerializeField] float      m_jumpForce = 7.5f;
     [SerializeField] Vector2    m_wallJumpForce = new(5.5f, 10.5f);
     [SerializeField] float      m_wallJumpDelay = 0.2f;
@@ -74,39 +76,63 @@ public class HeroKnight : MonoBehaviour {
 
         // -- Handle input and movement --
         float inputX = Input.GetAxis("Horizontal");
+        float inputXRaw = Input.GetAxisRaw("Horizontal");
 
         // Swap direction of sprite depending on walk direction
-        if (inputX > 0)
+        float inputTolerance = m_isWallSliding ? 0.9f : 0;
+        float inputSource = m_isWallSliding ? inputX : inputXRaw;
+        if (inputSource > inputTolerance && !m_isWallJumping)
         {
             GetComponent<SpriteRenderer>().flipX = false;
             m_facingDirection = 1;
         }
             
-        else if (inputX < 0)
+        else if (inputSource < inputTolerance * -1 && !m_isWallJumping)
         {
             GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
         }
 
         // Move
-        if (inputX != 0 && !m_rolling && !m_isWallJumping)
+        if (!m_rolling && !m_isWallJumping)
         {
-            m_body2d.linearVelocity = new Vector2(inputX * m_speed, m_body2d.linearVelocity.y);   
+            if (m_grounded)
+            {
+                m_body2d.linearVelocity = new Vector2(inputX * m_speed, m_body2d.linearVelocity.y);
+            } else if(inputXRaw != 0)
+            {
+                m_body2d.linearVelocity = new Vector2(inputX * m_speed, m_body2d.linearVelocity.y);
+            }
+        }
+
+        // Gravity
+        if (m_body2d.linearVelocity.y < 0 && !m_grounded && !m_isWallSliding)
+        {
+            m_body2d.linearVelocity = new Vector2(m_body2d.linearVelocity.x, Math.Min(m_fallSpeed * -1, m_body2d.linearVelocity.x * 1.1f));
+        }
+
+        bool wasWallSliding = m_isWallSliding;
+
+        // Wall Slide
+        m_isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
+        m_animator.SetBool("WallSlide", m_isWallSliding);
+
+        // Sticky wall slide
+        if (m_isWallSliding)
+        {
+            if (m_body2d.linearVelocity.y > 0) 
+                m_body2d.linearVelocity = new Vector2(m_body2d.linearVelocity.x, m_body2d.linearVelocity.y * 0.5f);
+            
+            if (! wasWallSliding)
+            {
+                m_body2d.linearVelocity = new Vector2(0f, 0f);
+            }
         }
 
         //Set AirSpeed in animator
         m_animator.SetFloat("AirSpeedY", m_body2d.linearVelocity.y);
 
         // -- Handle Animations --
-        //Wall Slide
-        m_isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
-        m_animator.SetBool("WallSlide", m_isWallSliding);
-
-        // Sticky wall slide
-        if (m_isWallSliding && m_body2d.linearVelocity.y > 0)
-        {
-            m_body2d.linearVelocity = new Vector2(m_body2d.linearVelocity.x, m_body2d.linearVelocity.y * 0.5f);
-        }
 
         //Death
         if (Input.GetKeyDown("e") && !m_rolling)
@@ -161,6 +187,7 @@ public class HeroKnight : MonoBehaviour {
         //Jump
         else if (Input.GetKeyDown("space") && (m_grounded || m_isWallSliding) && !m_rolling)
         {
+            // Wall Jumping
             if (m_isWallSliding && !m_grounded)
             {
                 m_isWallJumping = true;
@@ -172,7 +199,11 @@ public class HeroKnight : MonoBehaviour {
                 m_wallSensorR2.Disable(m_wallJumpDelay);
                 m_wallSensorL1.Disable(m_wallJumpDelay);
                 m_wallSensorL2.Disable(m_wallJumpDelay);
-            } else
+
+                GetComponent<SpriteRenderer>().flipX = ! GetComponent<SpriteRenderer>().flipX;
+                m_facingDirection *= -1;
+
+            } else // regular Jump
             {
                 m_body2d.linearVelocity = new Vector2(m_body2d.linearVelocity.x, m_jumpForce);
                 m_groundSensor.Disable(0.2f);
