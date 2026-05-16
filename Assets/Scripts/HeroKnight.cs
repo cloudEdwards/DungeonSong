@@ -14,6 +14,7 @@ public class HeroKnight : MonoBehaviour {
     [SerializeField] float      m_rollForce = 6.0f;
     [SerializeField] bool       m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
+    [SerializeField] GameObject m_cameraLookAheadPivot;
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
@@ -81,15 +82,19 @@ public class HeroKnight : MonoBehaviour {
         // Swap direction of sprite depending on walk direction
         float inputTolerance = m_isWallSliding ? 0.9f : 0;
         float inputSource = m_isWallSliding ? inputX : inputXRaw;
+
         if (inputSource > inputTolerance && !m_isWallJumping)
         {
             GetComponent<SpriteRenderer>().flipX = false;
+            m_cameraLookAheadPivot.transform.localScale = new Vector3(1f, m_cameraLookAheadPivot.transform.localScale.y, 1f);
             m_facingDirection = 1;
+
         }
             
         else if (inputSource < inputTolerance * -1 && !m_isWallJumping)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+            m_cameraLookAheadPivot.transform.localScale = new Vector3(-1f, m_cameraLookAheadPivot.transform.localScale.y, 1f);
             m_facingDirection = -1;
         }
 
@@ -109,12 +114,18 @@ public class HeroKnight : MonoBehaviour {
         if (m_body2d.linearVelocity.y < 0 && !m_grounded && !m_isWallSliding)
         {
             m_body2d.linearVelocity = new Vector2(m_body2d.linearVelocity.x, Math.Min(m_fallSpeed * -1, m_body2d.linearVelocity.x * 1.1f));
+            // vertical flip camera look ahead, look down
+            m_cameraLookAheadPivot.transform.localScale = new Vector3(m_cameraLookAheadPivot.transform.localScale.x, -1f, 1f);
+        } else
+        {
+            // vertical flip camera look ahead, look normal
+            m_cameraLookAheadPivot.transform.localScale = new Vector3(m_cameraLookAheadPivot.transform.localScale.x, 1f, 1f);
         }
 
         bool wasWallSliding = m_isWallSliding;
 
         // Wall Slide
-        m_isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
+        m_isWallSliding = (m_wallSensorR1.State() || m_wallSensorR2.State()) || (m_wallSensorL1.State() || m_wallSensorL2.State());
         m_animator.SetBool("WallSlide", m_isWallSliding);
 
         // Sticky wall slide
