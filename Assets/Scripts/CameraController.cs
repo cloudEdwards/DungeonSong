@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         float time = lerpTime * Time.deltaTime;
         Vector3 lookAheadPos = cameraLookAhead.transform.position;
@@ -27,5 +27,10 @@ public class CameraController : MonoBehaviour
             Mathf.Lerp(transform.position.x, lookAheadPos.x, time),
             Mathf.Lerp(transform.position.y, lookAheadPos.y, time),
             cameraZPos);
+
+
+        // Vector3 vel = Vector3.zero;
+        // Vector3 lookAheadPos = new Vector3(cameraLookAhead.transform.position.x, cameraLookAhead.transform.position.y, cameraZPos);
+        // transform.position = Vector3.SmoothDamp(transform.position, lookAheadPos, ref vel, lerpTime);
     }
 }
