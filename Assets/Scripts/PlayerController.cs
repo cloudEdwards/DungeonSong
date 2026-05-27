@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class HeroKnight : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
     [SerializeField] float      m_speed = 4.0f;
     [SerializeField] float      m_fallSpeed = 5f;
@@ -27,7 +27,7 @@ public class HeroKnight : MonoBehaviour {
     private bool                m_isWallJumping = false;
     private bool                m_grounded = false;
     private bool                m_rolling = false;
-    private int                 m_facingDirection = 1;
+    protected int               m_facingDirection = 1;
     private int                 m_currentAttack = 0;
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
@@ -273,5 +273,15 @@ public class HeroKnight : MonoBehaviour {
             // Turn arrow in correct direction
             dust.transform.localScale = new Vector3(m_facingDirection, 1, 1);
         }
+    }
+
+    public int GetFacingDir()
+    {
+        return m_facingDirection;
+    }
+
+    public void SetFacingDir(int facingDir)
+    {
+        m_facingDirection = facingDir;
     }
 }

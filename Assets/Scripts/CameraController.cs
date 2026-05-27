@@ -33,4 +33,9 @@ public class CameraController : MonoBehaviour
         // Vector3 lookAheadPos = new Vector3(cameraLookAhead.transform.position.x, cameraLookAhead.transform.position.y, cameraZPos);
         // transform.position = Vector3.SmoothDamp(transform.position, lookAheadPos, ref vel, lerpTime);
     }
+
+    public void SnapToCameraLookAhead()
+    {
+        transform.position = cameraLookAhead.transform.position;
+    }
 }

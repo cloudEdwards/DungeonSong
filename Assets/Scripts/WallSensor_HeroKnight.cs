@@ -4,7 +4,7 @@ public class WallSensor_HeroKnight : Sensor_HeroKnight {
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (! other.CompareTag("Wall"))
+        if (! other.CompareTag(TagEnum.Wall.ToString()))
         {
             return;
         }
@@ -14,7 +14,7 @@ public class WallSensor_HeroKnight : Sensor_HeroKnight {
 
     protected override void OnTriggerExit2D(Collider2D other)
     {
-        if (! other.CompareTag("Wall"))
+        if (! other.CompareTag(TagEnum.Wall.ToString()))
         {
             return;
         }
