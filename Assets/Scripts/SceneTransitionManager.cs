@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,10 @@ public class SceneTransitionManager : MonoBehaviour
     public static SceneTransitionManager Instance { get; private set; }
     protected GateIdEnum nextGateId;
     protected int playerFacingDir = 1;
+
+    [SerializeField]
+    protected float fadeDuration = 1f;
+    private CanvasGroup faderGroup;
 
     void Awake()
     {
@@ -19,6 +24,8 @@ public class SceneTransitionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        faderGroup = gameObject.GetComponentInChildren<CanvasGroup>();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -56,6 +63,44 @@ public class SceneTransitionManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void LoadNextScene(string sceneName)
+    {
+        StartCoroutine(FadeToNextScene(sceneName));
+    }
+
+    private IEnumerator FadeToNextScene(string sceneName)
+    {
+        Debug.Log("Fade Out");
+        yield return StartCoroutine(Fade(1));
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(sceneName);
+
+        while (! loadScene.isDone)
+        {
+            Debug.Log($"Loading progress: {loadScene.progress}");
+
+            yield return null;
+        }
+
+        Debug.Log("Fade IN");
+
+        yield return StartCoroutine(Fade(0));
+    }
+
+    private IEnumerator Fade(float targetAlpha)
+    {
+        float startAlpha = faderGroup.alpha;
+        float timer = 0;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            faderGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, timer / fadeDuration);
+            yield return null;
+        }
+
+        faderGroup.alpha = targetAlpha;
     }
 
     public void SetNextGateId(GateIdEnum gateId)

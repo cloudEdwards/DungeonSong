@@ -47,10 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e26f4e008de49c186b13e8dd60c09d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  gateId: 1
   gateSide: 0
   roomData: {fileID: 11400000, guid: 566ba0ecd2a584f23bac829907da859b, type: 2}
   gateSpawn: {fileID: 8304828753796470432}
+  faderGroup: {fileID: 0}
+  fadeDuration: 1
 --- !u!61 &1103928338599765637
 BoxCollider2D:
   m_ObjectHideFlags: 0

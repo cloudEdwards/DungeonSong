@@ -283,5 +283,7 @@ public class PlayerController : MonoBehaviour {
     public void SetFacingDir(int facingDir)
     {
         m_facingDirection = facingDir;
+
+        GetComponent<SpriteRenderer>().flipX = m_facingDirection < 0;
     }
 }

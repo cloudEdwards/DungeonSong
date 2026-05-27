@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,8 +24,7 @@ public class RoomGateScript : MonoBehaviour
     {
         SceneTransitionManager.Instance.SetNextGateId(GetDestinationGateId());
         SceneTransitionManager.Instance.SetPlayerFacingDir(player.GetComponent<PlayerController>().GetFacingDir());
-
-        SceneManager.LoadScene(getDestinationRoomName());
+        SceneTransitionManager.Instance.LoadNextScene(getDestinationRoomName());
     }
 
     private string getDestinationRoomName()

@@ -1753,6 +1753,80 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1001 &1577275878
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 79893543069591534, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793085276616600608, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 498.92725
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793085276616600608, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 397.32245
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793085276616600608, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793085276616600608, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793085276616600608, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793085276616600608, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793085276616600608, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793085276616600608, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793085276616600608, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793085276616600608, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857714240062120502, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597290713668307914, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: fadeDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658350144014397342, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+      propertyPath: m_Name
+      value: SceneTransitionManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+--- !u!225 &1577275879 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 79893543069591534, guid: 84699a26d5e7c4e6495b3366e57bb19b, type: 3}
+  m_PrefabInstance: {fileID: 1577275878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1598095852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1765,6 +1839,14 @@ PrefabInstance:
       propertyPath: roomData
       value: 
       objectReference: {fileID: 11400000, guid: 566ba0ecd2a584f23bac829907da859b, type: 2}
+    - target: {fileID: 1233373689603518243, guid: e24a7c5c5c06b47b3a2efc603af5c57f, type: 3}
+      propertyPath: faderGroup
+      value: 
+      objectReference: {fileID: 1577275879}
+    - target: {fileID: 1233373689603518243, guid: e24a7c5c5c06b47b3a2efc603af5c57f, type: 3}
+      propertyPath: fadeDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2058581886167298306, guid: e24a7c5c5c06b47b3a2efc603af5c57f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22.624487
@@ -1805,9 +1887,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6680694374251148469, guid: e24a7c5c5c06b47b3a2efc603af5c57f, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680694374251148469, guid: e24a7c5c5c06b47b3a2efc603af5c57f, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7255751216379745889, guid: e24a7c5c5c06b47b3a2efc603af5c57f, type: 3}
       propertyPath: m_Name
       value: RoomGate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8009750043467867522, guid: e24a7c5c5c06b47b3a2efc603af5c57f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8009750043467867522, guid: e24a7c5c5c06b47b3a2efc603af5c57f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8304828753796470432, guid: e24a7c5c5c06b47b3a2efc603af5c57f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2232,50 +2330,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &1893050120
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1893050122}
-  - component: {fileID: 1893050121}
-  m_Layer: 0
-  m_Name: SceneTransitionManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1893050121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893050120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 652fbd60d5bdb4f7fa1a0c9cfd6afb32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionManager
---- !u!4 &1893050122
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893050120}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.81796, y: 7.68696, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6855557595897071052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2284,6 +2338,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3060379834317616394, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5558316226936854118, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.5
@@ -2360,4 +2418,4 @@ SceneRoots:
   - {fileID: 1150320421}
   - {fileID: 1222000199}
   - {fileID: 1598095852}
-  - {fileID: 1893050122}
+  - {fileID: 1577275878}
