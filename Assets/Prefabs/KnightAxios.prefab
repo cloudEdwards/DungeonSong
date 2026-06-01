@@ -201,7 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   m_noBlood: 0
-  health: 100
+  playerData: {fileID: 11400000, guid: 169a00f14520847b0b72895ada724da2, type: 2}
+  damageIFrames: 1
 --- !u!114 &9043920546160527475
 MonoBehaviour:
   m_ObjectHideFlags: 0

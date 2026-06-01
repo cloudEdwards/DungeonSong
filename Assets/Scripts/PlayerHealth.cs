@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     bool m_noBlood = false;
     [SerializeField]
-    protected float health = 100f;
+    protected PlayerDataDto playerData;
 
     [SerializeField]
     protected float damageIFrames = 1f;
@@ -22,12 +22,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void Damage(float damage)
     {
-        if (health <= 0 || damageIFramesTimer > 0)
+        if (playerData.Health <= 0 || damageIFramesTimer > 0)
         {
             return;
         }
 
-        health -= damage;
+        playerData.Health -= damage;
 
         m_animator.SetTrigger("Hurt");
         damageIFramesTimer = damageIFrames;
@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
             damageIFramesTimer -= Time.deltaTime;
         }
 
-        if (! isDead && health <= 0)
+        if (! isDead && playerData.Health <= 0)
         {
             m_animator.SetBool("noBlood", m_noBlood);
             m_animator.SetTrigger("Death");
