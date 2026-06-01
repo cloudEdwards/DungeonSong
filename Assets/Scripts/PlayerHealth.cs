@@ -45,6 +45,10 @@ public class PlayerHealth : MonoBehaviour
             m_animator.SetBool("noBlood", m_noBlood);
             m_animator.SetTrigger("Death");
             isDead = true;
+
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<PlayerController>().enabled = false;
         }
     }
 }
