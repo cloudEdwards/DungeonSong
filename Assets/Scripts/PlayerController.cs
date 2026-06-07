@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] bool       m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
     [SerializeField] GameObject m_cameraLookAheadPivot;
+    [SerializeField] PlayerHealth m_playerHealth;
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
@@ -155,6 +156,16 @@ public class PlayerController : MonoBehaviour {
         //Hurt
         else if (Input.GetKeyDown("q") && !m_rolling)
             m_animator.SetTrigger("Hurt");
+
+            
+        //Heal
+        else if (Input.GetKeyDown("f") && !m_rolling)
+            m_playerHealth.HealHold();
+            // todo: make heal animation
+            // m_animator.SetTrigger("Heal");
+        else if (Input.GetKeyUp("f") && !m_rolling)
+            m_playerHealth.HealHoldStop();
+            // todo: end heal animation
 
         //Attack
         else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)

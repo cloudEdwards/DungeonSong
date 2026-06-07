@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85eb50f162bf84a8dbe8384b07a1c8b9, type: 3}
   m_Name: PlayerDataDto
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataDto
+  MaxHealth: 100
+  HealRate: 27
   StartingHealth: 100
-  Health: 0
+  Health: 100
