@@ -466,7 +466,6 @@ MonoBehaviour:
   m_wallJumpDragTime: 1
   m_wallJumpDecay: 10
   m_rollForce: 6
-  m_noBlood: 0
   m_slideDust: {fileID: 1038168246061390451, guid: 8b8c8cc6774fb074cb9139cc631b108e, type: 3}
   m_cameraLookAheadPivot: {fileID: 0}
   m_playerHealth: {fileID: 0}
@@ -667,8 +666,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.LegacyInputSource
   attackMouseButton: 0
-  abilityKeys: 66000000710000003100000032000000
-  interactKey: 101
+  abilityKeys: 72000000710000003100000032000000
+  interactKey: 102
 --- !u!114 &1124406216173994991
 MonoBehaviour:
   m_ObjectHideFlags: 0

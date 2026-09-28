@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 6584209801198422696}
   - component: {fileID: 6771108760096742396}
   - component: {fileID: 8655785535529309236}
+  - component: {fileID: 3962465565594794446}
   m_Layer: 11
   m_Name: POC_WallCrawler
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 60f4be9a06d6b4d119c364897fc54530, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -411,6 +412,51 @@ MonoBehaviour:
   knockbackUpwardBias: 0.3
   sourceTeam: 2
   active: 1
+--- !u!114 &3962465565594794446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180321325038328822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfd38a3fa8bb14d54a741693eb955518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.HitFeedback
+  healthSource: {fileID: 3511430218943135813}
+  renderers: []
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.25
+  flashCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  flashOnBlockedHits: 0
+  hitParticles: {fileID: 853513069538099809, guid: c743366ffab234511ac50ee58d07b19c, type: 3}
+  particleColor: {r: 0.35, g: 0.9, b: 0.25, a: 1}
+  particleLifetime: 1.2
+  orientToHitDirection: 1
 --- !u!1 &8239425710432739915
 GameObject:
   m_ObjectHideFlags: 0

@@ -203,6 +203,6 @@ MonoBehaviour:
   restoreResources: 1
   restoreAbilityCharges: 1
   saveOnRest: 1
-  interactionPrompt: Rest
+  interactionPrompt: take a Long Rest
   restAnimationKey: rest
   drawGizmos: 1

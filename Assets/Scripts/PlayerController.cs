@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour, IPlayerMotionContext {
     [SerializeField] float      m_wallJumpDragTime = 1.0f;
     [SerializeField] float      m_wallJumpDecay = 10.0f;
     [SerializeField] float      m_rollForce = 6.0f;
-    [SerializeField] bool       m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
     [SerializeField] GameObject m_cameraLookAheadPivot;
     [SerializeField] PlayerHealth m_playerHealth;

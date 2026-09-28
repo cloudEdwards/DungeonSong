@@ -60,7 +60,6 @@ namespace DungeonSong.Player
         private float comboWindowTimer;
         private PlayerAttackDefinition comboNext;
         private bool movementLocked;
-        private bool hitLandedThisSwing;
         private int attackIdCounter;
         private int currentAttackId;
 
@@ -303,7 +302,6 @@ namespace DungeonSong.Player
 
             current = definition;
             currentAttackId = ++attackIdCounter;
-            hitLandedThisSwing = false;
             comboNext = null;
             comboWindowTimer = 0f;
             globalCooldownTimer = globalCooldown;
@@ -395,7 +393,6 @@ namespace DungeonSong.Player
                 return;
             }
 
-            hitLandedThisSwing = true;
             HitStop.Request(current.Payload.HitStopSeconds);
             ApplyRecoil();
             AttackHit?.Invoke(current, victim, result);
