@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdf6dc4bccf942a6adc2b5f325ba446, type: 3}
+  m_Name: Effect_CureWounds
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.HealEffect
+  Description: Restores health at a campfire.
+  Amount: 30
+  PercentOfMax: 0

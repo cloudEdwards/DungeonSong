@@ -1,0 +1,17 @@
+{
+    "name": "DungeonSong.World",
+    "rootNamespace": "DungeonSong.World",
+    "references": [
+        "DungeonSong.Combat",
+        "DungeonSong.Player"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

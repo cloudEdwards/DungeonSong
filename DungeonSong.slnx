@@ -1,6 +1,8 @@
 ﻿<Solution>
   <Project Path="DungeonSong.Combat.csproj" />
+  <Project Path="DungeonSong.Player.csproj" />
   <Project Path="DungeonSong.Enemies.csproj" />
+  <Project Path="DungeonSong.World.csproj" />
   <Project Path="DungeonSong.Enemies.Tests.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
 </Solution>

@@ -13,7 +13,7 @@ namespace DungeonSong.Enemies
     /// <see cref="EnemyStats"/> asset.
     /// </para>
     /// </summary>
-    public class EnemyHealth : EnemyModule, IDamageable
+    public class EnemyHealth : EnemyModule, IDamageable, IHealth
     {
         [Header("Configuration")]
         [SerializeField, Tooltip("Overrides the stats on the Enemy's definition. Leave empty to use the definition.")]
@@ -59,6 +59,30 @@ namespace DungeonSong.Enemies
         public bool IsInInvulnerabilityWindow => invulnerabilityTimer > 0f;
 
         public EnemyStats Stats => stats;
+
+        // --- IHealth ---
+        // Explicit implementations bridge this component's own names onto the shared
+        // interface, so a heal effect or a health bar can treat any actor identically
+        // without EnemyHealth's existing API changing.
+
+        bool IHealth.IsInvulnerable => IsInInvulnerabilityWindow;
+
+        private event Action healthDied;
+
+        event Action IHealth.Died
+        {
+            add => healthDied += value;
+            remove => healthDied -= value;
+        }
+
+        float IHealth.Heal(float amount)
+        {
+            float before = current;
+            Heal(amount);
+            return current - before;
+        }
+
+        void IHealth.RestoreToFull() => ResetForLife();
 
         public DamageTeam Team => Owner != null ? Owner.Team : DamageTeam.Enemy;
 
@@ -315,6 +339,7 @@ namespace DungeonSong.Enemies
             debugCurrentHealth = 0f;
             HealthChanged?.Invoke(current, max);
             Died?.Invoke(info);
+            healthDied?.Invoke();
         }
     }
 }

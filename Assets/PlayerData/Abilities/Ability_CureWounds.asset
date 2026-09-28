@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f97238c09efd4d4186ecb3b0e2c7e2b, type: 3}
+  m_Name: Ability_CureWounds
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.AbilityDefinition
+  DisplayName: Cure Wounds
+  Id: cure_wounds
+  Description: Channel divine energy to mend your wounds. Only at a campfire.
+  Icon: {fileID: 0}
+  Category: 33
+  Tags:
+  - paladin
+  - holy
+  Cost:
+    Resource: {fileID: 11400000, guid: 809ac0350338c4adc8bc5fce35133709, type: 2}
+    Amount: 20
+  Cooldown: 0.6
+  MaxCharges: 0
+  Targeting: 0
+  Range: 0
+  CastTime: 0.35
+  Recovery: 0.15
+  LockMovement: 1
+  InterruptedByDamage: 1
+  Requirements:
+  - {fileID: 11400000, guid: 2651c46cbae4f495e80e90e579fc1985, type: 2}
+  Effects:
+  - {fileID: 11400000, guid: 06bec2160cf284e6296366065365dd96, type: 2}
+  AnimationKey: cast

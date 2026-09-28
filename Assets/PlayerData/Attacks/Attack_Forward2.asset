@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e439b00e78b04dbf8a371d649eeb5c9, type: 3}
+  m_Name: Attack_Forward2
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.PlayerAttackDefinition
+  DisplayName: Slash 2
+  Tags:
+  - nail
+  Direction: 0
+  AllowedContext: 3
+  ComboIndex: 1
+  Priority: 0
+  Startup: 0.07
+  Active: 0.1
+  Recovery: 0.16
+  Cooldown: 0
+  FollowUp: {fileID: 11400000, guid: fee1634e628b04f329675728ed6c6e2c, type: 2}
+  ComboWindow: 0.35
+  Payload:
+    Damage: 12
+    PoiseDamage: 12
+    Type: 1
+    Flags: 0
+    KnockbackForce: 6
+    KnockbackUpwardBias: 0.2
+    HitStopSeconds: 0.05
+  HitboxKey: Forward
+  MaxTargets: 0
+  LockMovement: 0
+  SelfVelocity: {x: 0, y: 0}
+  RecoilOnHit: 0
+  RecoilRequiresAirborne: 1
+  CancelRules: 15
+  Cost:
+    Resource: {fileID: 0}
+    Amount: 0
+  AnimationKey: attack_forward2

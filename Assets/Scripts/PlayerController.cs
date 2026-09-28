@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using DungeonSong.Player;
 
-public class PlayerController : MonoBehaviour {
+// Movement, input and facing only. Attacks, spells, tools and damage live in modules
+// alongside this component (see Assets/Scripts/Player). This class implements
+// IPlayerMotionContext so those modules can read movement state and request a movement
+// lock without either side referencing the other's concrete type.
+public class PlayerController : MonoBehaviour, IPlayerMotionContext {
 
     [SerializeField] float      m_speed = 4.0f;
     [SerializeField] float      m_fallSpeed = 5f;
@@ -29,11 +34,10 @@ public class PlayerController : MonoBehaviour {
     private bool                m_grounded = false;
     private bool                m_rolling = false;
     protected int               m_facingDirection = 1;
-    private int                 m_currentAttack = 0;
-    private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
+    private bool                m_movementLocked;
 
 
     // Use this for initialization
@@ -51,9 +55,6 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        // Increase timer that controls attack combo
-        m_timeSinceAttack += Time.deltaTime;
-
         // Increase timer that checks roll duration
         if(m_rolling)
             m_rollCurrentTime += Time.deltaTime;
@@ -77,8 +78,8 @@ public class PlayerController : MonoBehaviour {
         }
 
         // -- Handle input and movement --
-        float inputX = Input.GetAxis("Horizontal");
-        float inputXRaw = Input.GetAxisRaw("Horizontal");
+        float inputX = m_movementLocked ? 0f : Input.GetAxis("Horizontal");
+        float inputXRaw = m_movementLocked ? 0f : Input.GetAxisRaw("Horizontal");
 
         // Swap direction of sprite depending on walk direction
         float inputTolerance = m_isWallSliding ? 0.9f : 0;
@@ -146,49 +147,12 @@ public class PlayerController : MonoBehaviour {
 
         // -- Handle Animations --
 
-        //Death
-        if (Input.GetKeyDown("e") && !m_rolling)
-        {
-            m_animator.SetBool("noBlood", m_noBlood);
-            m_animator.SetTrigger("Death");
-        }
-            
-        //Hurt
-        else if (Input.GetKeyDown("q") && !m_rolling)
-            m_animator.SetTrigger("Hurt");
-
-            
-        //Heal
-        else if (Input.GetKeyDown("f") && !m_rolling)
-            m_playerHealth.HealHold();
-            // todo: make heal animation
-            // m_animator.SetTrigger("Heal");
-        else if (Input.GetKeyUp("f") && !m_rolling)
-            m_playerHealth.HealHoldStop();
-            // todo: end heal animation
-
-        //Attack
-        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
-        {
-            m_currentAttack++;
-
-            // Loop back to one after third attack
-            if (m_currentAttack > 3)
-                m_currentAttack = 1;
-
-            // Reset Attack combo if time since last attack is too large
-            if (m_timeSinceAttack > 1.0f)
-                m_currentAttack = 1;
-
-            // Call one of three attack animations "Attack1", "Attack2", "Attack3"
-            m_animator.SetTrigger("Attack" + m_currentAttack);
-
-            // Reset timer
-            m_timeSinceAttack = 0.0f;
-        }
+        // Attacks, spells and healing are no longer read here. PlayerCombat and
+        // AbilityLoadout consume buffered intent from PlayerInputRouter, which is what
+        // allows new attacks and abilities to be added without editing this file.
 
         // Block
-        else if (Input.GetMouseButtonDown(1) && !m_rolling)
+        if (Input.GetMouseButtonDown(1) && !m_rolling)
         {
             m_animator.SetTrigger("Block");
             m_animator.SetBool("IdleBlock", true);
@@ -296,5 +260,42 @@ public class PlayerController : MonoBehaviour {
         m_facingDirection = facingDir;
 
         GetComponent<SpriteRenderer>().flipX = m_facingDirection < 0;
+    }
+
+    // --- IPlayerMotionContext ---
+    // The whole contract combat has with movement: read state, request a lock, override
+    // velocity. Nothing in the combat or ability systems touches the fields above.
+
+    public int FacingDirection => m_facingDirection;
+
+    public bool IsGrounded => m_grounded;
+
+    public bool IsTouchingWall =>
+        m_wallSensorR1 != null && (m_wallSensorR1.State() && m_wallSensorR2.State())
+        || m_wallSensorL1 != null && (m_wallSensorL1.State() && m_wallSensorL2.State());
+
+    public bool IsWallSliding => m_isWallSliding;
+
+    /// <summary>A roll is a committed move; combat waits rather than interrupting it.</summary>
+    public bool IsInCommittedMove => m_rolling;
+
+    public Vector2 Velocity => m_body2d != null ? m_body2d.linearVelocity : Vector2.zero;
+
+    public void SetMovementLock(bool locked) => m_movementLocked = locked;
+
+    public void SetVelocity(Vector2 velocity)
+    {
+        if (m_body2d != null)
+        {
+            m_body2d.linearVelocity = velocity;
+        }
+    }
+
+    public void SetFacing(int sign)
+    {
+        if (sign != 0)
+        {
+            SetFacingDir(sign > 0 ? 1 : -1);
+        }
     }
 }

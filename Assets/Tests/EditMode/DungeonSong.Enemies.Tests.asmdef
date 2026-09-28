@@ -4,6 +4,8 @@
     "references": [
         "DungeonSong.Enemies",
         "DungeonSong.Combat",
+        "DungeonSong.World",
+        "DungeonSong.Player",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

@@ -92,8 +92,6 @@ GameObject:
   - component: {fileID: 3063043977955987439}
   - component: {fileID: 784793209160614414}
   - component: {fileID: 4387082945316070645}
-  - component: {fileID: 4636722737927479540}
-  - component: {fileID: 2886793364560666685}
   m_Layer: 10
   m_Name: AttackHitbox
   m_TagString: Untagged
@@ -174,64 +172,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e5b7da261da4dd89f46ddd10248720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.Hitbox
-  key: Sword
+  key: Forward
   targetTeams: 2
   maxTargetsPerActivation: 0
   singleHitPerTarget: 1
---- !u!114 &4636722737927479540
-MonoBehaviour:
+--- !u!1 &1699402533106150084
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 498829762378409648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e2949d458324021ba70b2d398fca6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.MirrorWithSprite
-  source: {fileID: 2954181336601895002}
-  mirrorScale: 0
---- !u!114 &2886793364560666685
-MonoBehaviour:
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 568664425329424213}
+  m_Layer: 9
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &568664425329424213
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 498829762378409648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cecee4a49b9f4a3da0dfe064eabf83b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.AnimatorHitboxDriver
-  animator: {fileID: 2655505060201611074}
-  hitbox: {fileID: 4387082945316070645}
-  layerIndex: 0
-  sourceTeam: 1
-  targetTeams: 2
-  damageType: 1
-  windows:
-  - StateName: Attack1
-    From: 0.25
-    To: 0.6
-    Damage: 10
-    PoiseDamage: 10
-    KnockbackForce: 6
-    KnockbackUpwardBias: 0.25
-  - StateName: Attack2
-    From: 0.25
-    To: 0.6
-    Damage: 10
-    PoiseDamage: 10
-    KnockbackForce: 6
-    KnockbackUpwardBias: 0.25
-  - StateName: Attack3
-    From: 0.25
-    To: 0.6
-    Damage: 14
-    PoiseDamage: 14
-    KnockbackForce: 6
-    KnockbackUpwardBias: 0.25
+  m_GameObject: {fileID: 1699402533106150084}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8, y: 0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8413529789942519730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3473397627926190975
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +239,101 @@ Transform:
   - {fileID: 5558316226936854118}
   m_Father: {fileID: 8413529789942519730}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4266934730032686989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3752310967079641359}
+  - component: {fileID: 2680798946560187156}
+  - component: {fileID: 1788056531297055805}
+  m_Layer: 10
+  m_Name: Hitbox_Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3752310967079641359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266934730032686989}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8, y: 0.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8413529789942519730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2680798946560187156
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266934730032686989}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.1, y: 1.2}
+  m_EdgeRadius: 0
+--- !u!114 &1788056531297055805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266934730032686989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e5b7da261da4dd89f46ddd10248720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.Hitbox
+  key: Wall
+  targetTeams: 2
+  maxTargetsPerActivation: 0
+  singleHitPerTarget: 1
 --- !u!1 &4689662743211927155
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +381,19 @@ GameObject:
   - component: {fileID: 8942925490989933264}
   - component: {fileID: 9117128348835321587}
   - component: {fileID: 855976272162238516}
+  - component: {fileID: 8920000243557437125}
+  - component: {fileID: 6737817520618429622}
+  - component: {fileID: 1124406216173994991}
+  - component: {fileID: 6579812695781408761}
+  - component: {fileID: 5651073445159850690}
+  - component: {fileID: 5253992398473304300}
+  - component: {fileID: 5221853098279700279}
+  - component: {fileID: 8584871449406815465}
+  - component: {fileID: 3834473334928794880}
+  - component: {fileID: 5680083540657862309}
+  - component: {fileID: 4902353859298319928}
+  - component: {fileID: 2995465671342002913}
+  - component: {fileID: 5546356472148973162}
   m_Layer: 9
   m_Name: KnightAxios
   m_TagString: Player
@@ -341,6 +424,10 @@ Transform:
   - {fileID: 2288550417354632559}
   - {fileID: 8728691828683202808}
   - {fileID: 3063043977955987439}
+  - {fileID: 1730914466205820773}
+  - {fileID: 1340176473369323558}
+  - {fileID: 3752310967079641359}
+  - {fileID: 568664425329424213}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5354858770393588792
@@ -552,6 +639,334 @@ MonoBehaviour:
   team: 1
   aimOffset: {x: 0, y: 0.75}
   damageableSource: {fileID: 5354858770393588792}
+--- !u!114 &8920000243557437125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bf473c4855a4c119bc4e71d924c316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.PlayerActor
+  team: 1
+  hostileTeams: 2
+  initializeOnAwake: 1
+--- !u!114 &6737817520618429622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8baa78deba5314b6797732be8f435b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.LegacyInputSource
+  attackMouseButton: 0
+  abilityKeys: 66000000710000003100000032000000
+  interactKey: 101
+--- !u!114 &1124406216173994991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738486e1347a545c48dab43416e2641d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.PlayerInputRouter
+  inputSourceComponent: {fileID: 6737817520618429622}
+  attackBufferSeconds: 0.18
+  abilityBufferSeconds: 0.15
+  directionDeadzone: 0.5
+  allowAirDiagonals: 1
+--- !u!114 &6579812695781408761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a98efb2145b9447e96cb622caf5c0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.PlayerAnimatorAdapter
+  animator: {fileID: 2655505060201611074}
+  actionBindings:
+  - Key: attack_forward
+    Parameter: Attack1
+  - Key: attack_forward2
+    Parameter: Attack2
+  - Key: attack_forward3
+    Parameter: Attack3
+  - Key: attack_up
+    Parameter: Attack2
+  - Key: attack_down
+    Parameter: Attack3
+  - Key: cast
+    Parameter: Attack2
+  - Key: hurt
+    Parameter: Hurt
+  - Key: death
+    Parameter: Death
+  - Key: rest
+    Parameter: Block
+  flagBindings: []
+  warnOnMissingKeys: 0
+--- !u!114 &5651073445159850690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3954e393474b3440da38c2a5e7068209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.HitboxDirectory
+  hitboxes:
+  - Key: Forward
+    Hitbox: {fileID: 4387082945316070645}
+    MirrorWithFacing: 1
+  - Key: Up
+    Hitbox: {fileID: 966325112978517525}
+    MirrorWithFacing: 0
+  - Key: Down
+    Hitbox: {fileID: 2369305857672948157}
+    MirrorWithFacing: 0
+  - Key: Wall
+    Hitbox: {fileID: 1788056531297055805}
+    MirrorWithFacing: 1
+--- !u!114 &5253992398473304300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768289b8d21cb47f18d658d88dc9f15d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.PlayerCombat
+  attacks:
+  - {fileID: 11400000, guid: deb85fb4423124df2b47e8eb8a9ed381, type: 2}
+  - {fileID: 11400000, guid: ef4a7d6881adc40b0b7fae6583b0533f, type: 2}
+  - {fileID: 11400000, guid: fee1634e628b04f329675728ed6c6e2c, type: 2}
+  - {fileID: 11400000, guid: d21c01fa7f4254a4f8c00fa14bd5e470, type: 2}
+  - {fileID: 11400000, guid: dfda5cb7fa57b4717ad46b2ba961d72c, type: 2}
+  - {fileID: 11400000, guid: bd297a2ff0e1d4e38bfcdfb6bbc525ea, type: 2}
+  - {fileID: 11400000, guid: 2b308641a1d7d4699adf1bcb8972bb4f, type: 2}
+  globalCooldown: 0
+  logAttacks: 0
+--- !u!114 &5221853098279700279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b7d529b04f64473b5756d35d70c5d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.ResourcePool
+  resources:
+  - {fileID: 11400000, guid: 809ac0350338c4adc8bc5fce35133709, type: 2}
+--- !u!114 &8584871449406815465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e66127557ab4639874e2603a9f6ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.EffectAbility
+  definition: {fileID: 11400000, guid: 4f0a8e08c440e423595fa982209d25f2, type: 2}
+--- !u!114 &3834473334928794880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b331ce3d994bbfb693ce7e95bfc13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.ProjectileAbility
+  definition: {fileID: 11400000, guid: 64f7fa6d0090041e18e7b23dead62d71, type: 2}
+  projectile: {fileID: 11400000, guid: 07d70a2526b174447b125acf63b6ab37, type: 2}
+  muzzle: {fileID: 568664425329424213}
+  allowVerticalAim: 1
+  aimDeadzone: 0.5
+--- !u!114 &5680083540657862309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15ba16f86d7949589a9e6c7379bae9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.AbilityLoadout
+  slots:
+  - {fileID: 8584871449406815465}
+  - {fileID: 3834473334928794880}
+--- !u!114 &4902353859298319928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e80101d9a50648eb999a5c9d9391d27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.PlayerInteractor
+  interactionRange: 2.5
+  drawGizmos: 1
+--- !u!114 &2995465671342002913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2589333ab6d24f31bec0e6f982b9876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.World::DungeonSong.World.PlayerRespawner
+  respawnDelay: 1.5
+  fallBackToStartPosition: 1
+--- !u!114 &5546356472148973162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82779ea00ea3347279001af3b49457c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.PlayerDebugOverlay
+  showCombat: 1
+  showAbilities: 1
+  showResources: 1
+  showInteraction: 1
+  showCheckpoint: 1
+  labelOffset: {x: 0, y: 1.6}
+--- !u!1 &7010492796169314396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1730914466205820773}
+  - component: {fileID: 8431059028310992120}
+  - component: {fileID: 966325112978517525}
+  m_Layer: 10
+  m_Name: Hitbox_Up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1730914466205820773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7010492796169314396}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8413529789942519730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &8431059028310992120
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7010492796169314396}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1.1}
+  m_EdgeRadius: 0
+--- !u!114 &966325112978517525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7010492796169314396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e5b7da261da4dd89f46ddd10248720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.Hitbox
+  key: Up
+  targetTeams: 2
+  maxTargetsPerActivation: 0
+  singleHitPerTarget: 1
 --- !u!1 &7087049454815086010
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +1174,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff515047d5024e8a8fc7fcccdf3a9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallSensor_HeroKnight
+--- !u!1 &8394341924536401810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1340176473369323558}
+  - component: {fileID: 7381681191100586269}
+  - component: {fileID: 2369305857672948157}
+  m_Layer: 10
+  m_Name: Hitbox_Down
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1340176473369323558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8394341924536401810}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8413529789942519730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &7381681191100586269
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8394341924536401810}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &2369305857672948157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8394341924536401810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e5b7da261da4dd89f46ddd10248720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.Hitbox
+  key: Down
+  targetTeams: 2
+  maxTargetsPerActivation: 0
+  singleHitPerTarget: 1
 --- !u!1 &8631832243428726876
 GameObject:
   m_ObjectHideFlags: 0

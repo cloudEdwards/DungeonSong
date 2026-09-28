@@ -31,6 +31,12 @@ namespace DungeonSong.Combat
         Magic = 1 << 3,
         Fire = 1 << 4,
         Environmental = 1 << 5,
+
+        // Added for the player's Paladin/Warlock kit. New bits only: existing values are
+        // untouched, so already-serialized assets keep their meaning.
+        Holy = 1 << 6,
+        Eldritch = 1 << 7,
+        Poison = 1 << 8,
     }
 
     /// <summary>Per-hit modifiers that bypass parts of the damage pipeline.</summary>

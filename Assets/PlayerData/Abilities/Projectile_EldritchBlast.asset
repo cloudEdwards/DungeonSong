@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fd5081417804eda82543714a0a7fb1, type: 3}
+  m_Name: Projectile_EldritchBlast
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.Projectiles.ProjectileDefinition
+  Prefab: {fileID: 3548288774247810789, guid: fe4a99a2bec2345eb9d8e8e3b0adb802, type: 3}
+  PrewarmCount: 6
+  Motion: 0
+  Speed: 14
+  GravityScale: 1.5
+  HomingTurnRate: 180
+  Lifetime: 2.5
+  OutboundDuration: 0.6
+  Damage: 14
+  PoiseDamage: 10
+  DamageType: 132
+  KnockbackForce: 5
+  KnockbackUpwardBias: 0.15
+  PierceCount: 0
+  DespawnOnTerrain: 1
+  ProjectilesPerShot: 1
+  SpreadDegrees: 0
