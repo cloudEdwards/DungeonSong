@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0014ce7bf5f46c29f6a4f949ea799b, type: 3}
+  m_Name: Test_EnemyDefinition
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyDefinition
+  DisplayName: Test Enemy
+  Prefab: {fileID: 7029461636745563250, guid: e4d331d72c8af4eafb123e4f2fe847c6, type: 3}
+  Stats: {fileID: 11400000, guid: af507db83440e4830a0bafdde1ba74e3, type: 2}
+  Movement: {fileID: 11400000, guid: 5e05b1832bb5b4ba8a88f1f299e63ddd, type: 2}
+  Perception: {fileID: 11400000, guid: 66d855af2d45a48faa321e0514114f10, type: 2}
+  PrewarmCount: 0
+  Notes: 

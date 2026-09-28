@@ -2,8 +2,9 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using DungeonSong.Combat;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
     private Animator m_animator;
     
@@ -80,6 +81,37 @@ public class PlayerHealth : MonoBehaviour
 
         playerData.Health += healAmount;
         playerData.Health = Mathf.Min(playerData.Health, playerData.MaxHealth);
+    }
+
+    // --- IDamageable ---
+    // Lets the enemy framework damage the player through the same pipeline it uses for
+    // everything else, without the enemy code knowing this class exists. The existing
+    // Damage(float) entry point is untouched, so the legacy EnemyScript still works.
+
+    public DamageTeam Team => DamageTeam.Player;
+
+    public bool IsAlive => !isDead && playerData.Health > 0f;
+
+    public Transform Transform => transform;
+
+    public DamageResult TakeDamage(in DamageInfo info)
+    {
+        if (!IsAlive)
+        {
+            return DamageResult.Ignored;
+        }
+
+        float before = playerData.Health;
+        Damage(info.Amount);
+        float applied = before - playerData.Health;
+
+        return new DamageResult
+        {
+            Applied = applied > 0f,
+            AmountApplied = applied,
+            Killed = playerData.Health <= 0f,
+            Reaction = playerData.Health <= 0f ? HitReaction.Death : HitReaction.Flinch,
+        };
     }
 
     void Update()

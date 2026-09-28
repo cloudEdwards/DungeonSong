@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0014ce7bf5f46c29f6a4f949ea799b, type: 3}
+  m_Name: Enemy_WallCrawler
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyDefinition
+  DisplayName: Wall Crawler
+  Prefab: {fileID: 3180321325038328822, guid: f7b80e5a3420247dca7febf1d4704db4, type: 3}
+  Stats: {fileID: 11400000, guid: afabb5318393049c396a0c2f9f87c3e7, type: 2}
+  Movement: {fileID: 11400000, guid: 1a82c20ef618d42f88847fb956570dfc, type: 2}
+  Perception: {fileID: 11400000, guid: f14223c7d9a914c6e8c4f83948d27c37, type: 2}
+  PrewarmCount: 0
+  Notes: 'Proof of concept E: crawls floor to wall to ceiling by rotating around
+    corners, and deals contact damage. Knockback-immune so it cannot be knocked off
+    its surface.'

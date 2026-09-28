@@ -81,6 +81,157 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2a8bdc7f41b704693ad497097f30dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &498829762378409648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3063043977955987439}
+  - component: {fileID: 784793209160614414}
+  - component: {fileID: 4387082945316070645}
+  - component: {fileID: 4636722737927479540}
+  - component: {fileID: 2886793364560666685}
+  m_Layer: 10
+  m_Name: AttackHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3063043977955987439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498829762378409648}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.85, y: 0.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8413529789942519730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &784793209160614414
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498829762378409648}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.3, y: 1.1}
+  m_EdgeRadius: 0
+--- !u!114 &4387082945316070645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498829762378409648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e5b7da261da4dd89f46ddd10248720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.Hitbox
+  key: Sword
+  targetTeams: 2
+  maxTargetsPerActivation: 0
+  singleHitPerTarget: 1
+--- !u!114 &4636722737927479540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498829762378409648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e2949d458324021ba70b2d398fca6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.MirrorWithSprite
+  source: {fileID: 2954181336601895002}
+  mirrorScale: 0
+--- !u!114 &2886793364560666685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498829762378409648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cecee4a49b9f4a3da0dfe064eabf83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.AnimatorHitboxDriver
+  animator: {fileID: 2655505060201611074}
+  hitbox: {fileID: 4387082945316070645}
+  layerIndex: 0
+  sourceTeam: 1
+  targetTeams: 2
+  damageType: 1
+  windows:
+  - StateName: Attack1
+    From: 0.25
+    To: 0.6
+    Damage: 10
+    PoiseDamage: 10
+    KnockbackForce: 6
+    KnockbackUpwardBias: 0.25
+  - StateName: Attack2
+    From: 0.25
+    To: 0.6
+    Damage: 10
+    PoiseDamage: 10
+    KnockbackForce: 6
+    KnockbackUpwardBias: 0.25
+  - StateName: Attack3
+    From: 0.25
+    To: 0.6
+    Damage: 14
+    PoiseDamage: 14
+    KnockbackForce: 6
+    KnockbackUpwardBias: 0.25
 --- !u!1 &3473397627926190975
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +310,8 @@ GameObject:
   - component: {fileID: 2954181336601895002}
   - component: {fileID: 8942925490989933264}
   - component: {fileID: 9117128348835321587}
-  m_Layer: 0
+  - component: {fileID: 855976272162238516}
+  m_Layer: 9
   m_Name: KnightAxios
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -187,6 +339,8 @@ Transform:
   - {fileID: 6993680989454103393}
   - {fileID: 6829853696545266421}
   - {fileID: 2288550417354632559}
+  - {fileID: 8728691828683202808}
+  - {fileID: 3063043977955987439}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5354858770393588792
@@ -228,6 +382,7 @@ MonoBehaviour:
   m_noBlood: 0
   m_slideDust: {fileID: 1038168246061390451, guid: 8b8c8cc6774fb074cb9139cc631b108e, type: 3}
   m_cameraLookAheadPivot: {fileID: 0}
+  m_playerHealth: {fileID: 0}
 --- !u!95 &2655505060201611074
 Animator:
   serializedVersion: 7
@@ -382,6 +537,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.73, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &855976272162238516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fecb70d5cd8249deb4ec32e8740d404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.Targetable
+  team: 1
+  aimOffset: {x: 0, y: 0.75}
+  damageableSource: {fileID: 5354858770393588792}
 --- !u!1 &7087049454815086010
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,6 +921,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff515047d5024e8a8fc7fcccdf3a9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallSensor_HeroKnight
+--- !u!1 &9150213833725260354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8728691828683202808}
+  - component: {fileID: 2620572436600495956}
+  - component: {fileID: 5357212206910053901}
+  m_Layer: 9
+  m_Name: Hurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8728691828683202808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9150213833725260354}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8413529789942519730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2620572436600495956
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9150213833725260354}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.55, y: 1.1}
+  m_EdgeRadius: 0
+--- !u!114 &5357212206910053901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9150213833725260354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b1e995dd4e24ab4846b4bd0e896cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.Hurtbox
+  ownerSource: {fileID: 5354858770393588792}
+  damageMultiplier: 1
+  isWeakPoint: 0
 --- !u!1001 &404374103008628047
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0014ce7bf5f46c29f6a4f949ea799b, type: 3}
+  m_Name: Enemy_Chaser
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyDefinition
+  DisplayName: Chaser
+  Prefab: {fileID: 3181105471084230525, guid: 23d5f7e6a710e4014b514c8a45b049fd, type: 3}
+  Stats: {fileID: 11400000, guid: 818a108ec61dd44bc877ea55a4add972, type: 2}
+  Movement: {fileID: 11400000, guid: 663185d0c5c724434aff9afa2ef8611a, type: 2}
+  Perception: {fileID: 11400000, guid: 0e410183236a34d34ac6a9c3a8694a7b, type: 2}
+  PrewarmCount: 0
+  Notes: 'Proof of concept B: detection with line of sight, alert tell, chase, committed
+    melee with recovery, then search on losing the target.'

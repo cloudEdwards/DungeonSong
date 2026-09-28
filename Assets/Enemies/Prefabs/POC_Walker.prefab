@@ -1,0 +1,490 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7021494426041446752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8511029055224857053}
+  - component: {fileID: 9111316522392880709}
+  - component: {fileID: 7970381968381960716}
+  m_Layer: 11
+  m_Name: Hurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8511029055224857053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021494426041446752}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4791474063679577786}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &9111316522392880709
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021494426041446752}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.62, y: 0.62}
+  m_EdgeRadius: 0
+--- !u!114 &7970381968381960716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021494426041446752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b1e995dd4e24ab4846b4bd0e896cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.Hurtbox
+  ownerSource: {fileID: 3796067843126545052}
+  damageMultiplier: 1
+  isWeakPoint: 0
+--- !u!1 &7025726677925900098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4791474063679577786}
+  - component: {fileID: 3374634199195752779}
+  - component: {fileID: 457572480782756416}
+  - component: {fileID: 4503772072918217356}
+  - component: {fileID: 5869213030171151523}
+  - component: {fileID: 3796067843126545052}
+  - component: {fileID: 646753334210902035}
+  - component: {fileID: 5810848264862917783}
+  - component: {fileID: 7723743274293469888}
+  - component: {fileID: 754435989096659852}
+  - component: {fileID: 416087577093904936}
+  - component: {fileID: 3192692800598481713}
+  - component: {fileID: 8396684417632056479}
+  - component: {fileID: 6762826581597039976}
+  - component: {fileID: 2737418140076485543}
+  - component: {fileID: 1025444827339792993}
+  m_Layer: 11
+  m_Name: POC_Walker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4791474063679577786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8511029055224857053}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3374634199195752779
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: -1530243461
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 2244746486797686861, guid: d2005438a01664de4bef80e4ce09f90d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 9.940001, y: 5.728379}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+--- !u!50 &457572480782756416
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!61 &4503772072918217356
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 9.940001, y: 5.728379}
+    newSize: {x: 9.940001, y: 5.728379}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.6, y: 0.6}
+  m_EdgeRadius: 0
+--- !u!114 &5869213030171151523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6566e123b161d4c43b8ae106a1d54cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.Enemy
+  definition: {fileID: 11400000, guid: ca06fe249a32e4872bea645a8e0c1b59, type: 2}
+  team: 2
+  hostileTeams: 1
+  initializeOnAwake: 1
+  activateOnSpawn: 1
+  pooled: 0
+  facingMode: 0
+  spriteRenderer: {fileID: 3374634199195752779}
+  artworkFacing: 1
+  initialFacing: 1
+--- !u!114 &3796067843126545052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a6fdd980a554799ab758627348fe55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyHealth
+  statsOverride: {fileID: 0}
+  debugCurrentHealth: 0
+--- !u!114 &646753334210902035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7816fc86d6ad45fbb6235d3612d0925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyStateMachine
+  defaultState: {fileID: 0}
+  logTransitions: 0
+--- !u!114 &5810848264862917783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611629ef6e66d48dc84cb9bd5e2555d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyDebugOverlay
+  showStatusLabel: 1
+  showTargetLine: 1
+  showMotion: 1
+  showAttackRanges: 1
+  alwaysVisible: 0
+  labelOffset: {x: 0, y: 1.2}
+--- !u!114 &7723743274293469888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125420e4394b94a23a63f4b13235ad6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.GroundMovement
+  settingsOverride: {fileID: 0}
+  terrainMask:
+    serializedVersion: 2
+    m_Bits: 257
+  groundProbeOffset: {x: 0, y: -0.32}
+  groundProbeRadius: 0.12
+  wallProbeOffset: {x: 0, y: 0}
+  wallProbeDistance: 0.42
+  ceilingProbeOffset: {x: 0, y: 0.32}
+  ceilingProbeDistance: 0
+  edgeProbeForward: 0.42
+  edgeProbeDepth: 0.6
+  drawProbes: 1
+  airControl: 1
+  airControlFactor: 0.4
+--- !u!114 &754435989096659852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2f1d2bb718646328ddd3d60c7ccec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyActivation
+  activationRadius: 16
+  deactivationRadius: 22
+  canReturnToDormant: 1
+  stayAwakeWhileEngaged: 1
+  checkInterval: 0.25
+--- !u!114 &416087577093904936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33d25c352f4b462898c6abadd2766b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.IdleState
+  priorityOverride: -1
+  idleAnimationKey: idle
+  duration: 0
+--- !u!114 &3192692800598481713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc3532bdd521433f9d0a6ed5e0736ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.PatrolState
+  priorityOverride: -1
+  speedScale: 1
+  turnAtEdges: 1
+  turnAtWalls: 1
+  patrolRadius: 0
+  pauseAfterTurn: 0.4
+  walkAnimationKey: walk
+--- !u!114 &8396684417632056479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb7db10a3a1d4a06b52a05099072d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.HurtState
+  priorityOverride: -1
+  duration: 0.15
+  stopMovement: 1
+  hurtAnimationKey: hurt
+--- !u!114 &6762826581597039976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7b1ed6d502342a6af398241ee9a4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.StaggerState
+  priorityOverride: -1
+  duration: 0.6
+  staggerAnimationKey: stagger
+  cancelAttacks: 1
+--- !u!114 &2737418140076485543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa79ad0c2251743e488eca5e726fdcf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.DeadState
+  priorityOverride: -1
+  despawnDelay: 1.5
+  deathAnimationKey: death
+  disableColliders: 1
+  freezeBody: 1
+  disableContactDamage: 1
+--- !u!114 &1025444827339792993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025726677925900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6324638bd1bb34fde9c3fcb547b350dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Combat::DungeonSong.Combat.ContactDamager
+  damage: 10
+  targetTeams: 1
+  perTargetCooldown: 0.8
+  knockbackForce: 7
+  knockbackUpwardBias: 0.35
+  sourceTeam: 2
+  active: 1

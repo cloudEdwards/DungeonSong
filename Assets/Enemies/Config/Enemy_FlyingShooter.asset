@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0014ce7bf5f46c29f6a4f949ea799b, type: 3}
+  m_Name: Enemy_FlyingShooter
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyDefinition
+  DisplayName: Flying Shooter
+  Prefab: {fileID: 1267644360269129280, guid: 134c03168854346379c7fb7c1b33a6b2, type: 3}
+  Stats: {fileID: 11400000, guid: 2fee8097a361845f9b23e56430df2b77, type: 2}
+  Movement: {fileID: 11400000, guid: 654bee4b57f0e4904adcde541008594d, type: 2}
+  Perception: {fileID: 11400000, guid: 5f27f1906ba304b2689e5909511310b6, type: 2}
+  PrewarmCount: 0
+  Notes: 'Proof of concept C: gravity-free flight, keeps the player in a preferred
+    band, fires pooled projectiles.'

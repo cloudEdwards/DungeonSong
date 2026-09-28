@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0014ce7bf5f46c29f6a4f949ea799b, type: 3}
+  m_Name: Enemy_Defender
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyDefinition
+  DisplayName: Defender
+  Prefab: {fileID: 5217656232728923178, guid: 34a440ed6a98648fc966baee42015ac4, type: 3}
+  Stats: {fileID: 11400000, guid: 289c5977c4143489791436e2408b5939, type: 2}
+  Movement: {fileID: 11400000, guid: 494055aee493c44339928d11b74849f1, type: 2}
+  Perception: {fileID: 11400000, guid: c7b6b9d2e90444188bc18cdc9003125c, type: 2}
+  PrewarmCount: 0
+  Notes: 'Proof of concept D: patrols, raises a directional shield while closing,
+    lowers it to bash. Hits from behind bypass the shield.'

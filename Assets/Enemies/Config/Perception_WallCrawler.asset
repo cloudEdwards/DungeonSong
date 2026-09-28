@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35307c6760a94f65bb7f49c80362703, type: 3}
+  m_Name: Perception_WallCrawler
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.PerceptionSettings
+  DetectionRadius: 6
+  LoseRadius: 9
+  FieldOfViewDegrees: 200
+  AlwaysNoticeAtContact: 1
+  ContactRadius: 1
+  RequireLineOfSight: 1
+  ObstructionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  MemoryDuration: 3
+  HearingRadius: 0
+  TickInterval: 0.1

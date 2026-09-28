@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0014ce7bf5f46c29f6a4f949ea799b, type: 3}
+  m_Name: Enemy_Walker
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyDefinition
+  DisplayName: Walker
+  Prefab: {fileID: 7025726677925900098, guid: 927f77bdd40e041d6a72e3007d38f8d1, type: 3}
+  Stats: {fileID: 11400000, guid: a45623f7de03b4ad7a716d845d66e8f2, type: 2}
+  Movement: {fileID: 11400000, guid: 19118e88eb6a34eea8d29952533116e9, type: 2}
+  Perception: {fileID: 0}
+  PrewarmCount: 0
+  Notes: 'Proof of concept A: ground patrol, edge turn, contact damage. No perception
+    and no attacks, which proves the framework works with modules absent.'
