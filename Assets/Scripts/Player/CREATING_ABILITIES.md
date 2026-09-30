@@ -69,7 +69,8 @@ Spells are abilities. There is no spell system.
 | **Id** | Stable string for saves and loadouts. Do not change once players have saves |
 | **Category** | `Spell`, `Tool`, `Healing`… for UI and progression only |
 | **Tags** | Free-form: `warlock`, `eldritch`, `ranged` |
-| **Cost** | Resource + amount |
+| **Cost** | Resource + amount. Leave empty for a cantrip. A spell slot is `{Resource_WarlockSlots, 1}` or `{Resource_PaladinSlots, 1}` |
+| **Spend Cost On Resolve** | Charge the cost when the ability takes effect, so an interrupted cast is free |
 | **Cooldown** | Seconds |
 | **Targeting** | `Self`, `Direction`, `NearestEnemy`, `PointInFront` |
 | **Cast Time / Recovery** | Wind-up and commitment |
@@ -89,6 +90,16 @@ from the definition.
 ### A spell with no projectile
 Use **`EffectAbility`** instead and put the consequences in **Effects**. That is all Cure
 Wounds is: `EffectAbility` + `HealEffect` + `Self` targeting.
+
+### An area burst in front of the player
+Use **`HitboxBurstAbility`** and point **Burst Prefab** at a prefab with a `Hitbox` and a
+trigger collider, authored facing right. That is Burning Hands:
+`Assets/Prefabs/BurningHandsCone.prefab`. Damage goes through the normal hitbox path.
+
+### A buff on the player's sword
+Implement `IAttackModifier` and register with `PlayerCombat.AddAttackModifier`; it can add
+damage and damage types to each swing before the hitbox opens. `SmiteAbility` is the example.
+Override `ActiveStacks` to show a counter in the ability slot.
 
 ### A spell that needs genuinely new mechanics
 Only then write code: subclass `AbilityBehaviour` and implement `OnResolve`. Cost, cooldown,
@@ -167,18 +178,21 @@ Create the asset, set its **Unmet Message**, and add it to an ability's **Requir
 `AreRequirementsMet(out string reason)` gives UI the message; the ability bar greys the slot
 out automatically.
 
-Existing: `Require_NearCampfire` (`RequireNearRestPoint`).
+Existing: `Require_NearCampfire` (`RequireNearRestPoint`) — currently unused since Cure Wounds went to Paladin slots.
 
 ---
 
 ## 6. A new resource
 
 1. **Create ▸ Dungeon ▸ Player ▸ Resource Definition** — max, starting amount, regen rate
-   and delay.
+   and delay, which rests refill it (**Refilled By**), and whether death empties it.
+   The **Id** keys the session and save values; do not change it once players have saves.
 2. Add it to the **Resources** list on the player's `ResourcePool`.
 3. Reference it from any ability's **Cost**.
-4. For a HUD bar: duplicate the `ManaBar` object under `HudCanvas` and point its
-   `ResourceView` at the new definition.
+4. For a HUD bar: duplicate the `LoyaltyBar` object under `HudCanvas` and point its
+   `ResourceView` at the new definition. For whole units such as spell slots, duplicate
+   `WarlockSlots` instead — **Show As Pips** renders them as ◆◇.
+5. To fill it from combat, add a `ResourceOnHit` to the player, as Loyalty does.
 
 Runtime values live on `ResourcePool`, never in the asset — the asset is shared configuration.
 
@@ -191,7 +205,8 @@ Runtime values live on `ResourcePool`, never in the asset — the asset is share
 1. Add a trigger `Collider2D` and a `Campfire` component (or write a new `IRestPoint` +
    `IInteractable`), and give it a **unique Rest Point Id** — it goes in the save.
 2. Set the **Interaction Prompt** verb; the HUD renders "Press {key} to {verb}".
-3. Choose what resting restores: health, resources, ability charges, whether it saves.
+3. Choose what resting restores: health, resources (everything whose **Refilled By**
+   includes `Long`), ability charges, whether it saves.
 
 To react to resting from elsewhere, listen rather than editing the campfire:
 
@@ -246,7 +261,8 @@ It works on the player too — `HitFeedback` listens to `IHealth`, which both si
 | Combo never chains | **Follow Up** unset, **Combo Window** 0, or the follow-up's **Combo Index** is 0 |
 | Ability does nothing on keypress | Not in an `AbilityLoadout` slot, or the key index does not match the slot index |
 | Ability greyed out | Cooldown, unaffordable cost, no charges, or an unmet requirement — `AreRequirementsMet` says which |
-| Spell costs nothing | **Cost** has no resource assigned |
+| Spell costs nothing | **Cost** has no resource assigned — that is how cantrips are made |
+| Slots refill when changing rooms | A new resource is missing from `ResourcePool`, or two resources share an **Id** |
 | Prompt shows the wrong key | The prompt reads `LegacyInputSource`; check **Interact Key** on the prefab, not just the script default |
 | Enemy does not flash | Sprite material is not `SpriteFlash.mat`, or `HitFeedback` has no health source |
 | Player is stuck unable to move | A movement lock leaked. Locks are reference-counted and released on cancel/death; `PlayerActor.ClearMovementLocks()` is the escape hatch |

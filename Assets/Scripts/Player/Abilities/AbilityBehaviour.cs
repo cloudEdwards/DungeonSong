@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using DungeonSong.Combat;
 
 namespace DungeonSong.Player
 {
@@ -67,7 +68,34 @@ namespace DungeonSong.Player
 
         private bool HasCharge => definition == null || definition.MaxCharges <= 0 || charges > 0;
 
-        public override void OnPlayerInitialized() => ResetCharges();
+        /// <summary>
+        /// A live counter for the HUD while the ability's effect persists, e.g. empowered
+        /// strikes left on Divine Smite. 0 hides it.
+        /// </summary>
+        public virtual int ActiveStacks => 0;
+
+        public override void OnPlayerInitialized()
+        {
+            ResetCharges();
+            Owner.Damaged += OnOwnerDamaged;
+        }
+
+        protected virtual void OnDestroy()
+        {
+            if (Owner != null)
+            {
+                Owner.Damaged -= OnOwnerDamaged;
+            }
+        }
+
+        // Only the wind-up can be interrupted: once the ability has resolved it has happened.
+        private void OnOwnerDamaged(PlayerActor player, DamageInfo info, DamageResult result)
+        {
+            if (IsRunning && !resolving && result.Applied && definition != null && definition.InterruptedByDamage)
+            {
+                Cancel();
+            }
+        }
 
         public override void OnPlayerSpawned()
         {
@@ -132,7 +160,7 @@ namespace DungeonSong.Player
                 return false;
             }
 
-            if (Owner.Resources != null && !Owner.Resources.TrySpend(definition.Cost))
+            if (!definition.SpendCostOnResolve && Owner.Resources != null && !Owner.Resources.TrySpend(definition.Cost))
             {
                 return false;
             }
@@ -179,6 +207,12 @@ namespace DungeonSong.Player
 
             if (!resolving)
             {
+                if (definition.SpendCostOnResolve && Owner.Resources != null && !Owner.Resources.TrySpend(definition.Cost))
+                {
+                    Cancel();
+                    return;
+                }
+
                 resolving = true;
                 phaseTimer = definition.Recovery;
                 Resolve();

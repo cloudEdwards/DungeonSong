@@ -18,10 +18,10 @@ namespace DungeonSong.Player
         private int attackMouseButton;
 
         [SerializeField, Tooltip("Keys that activate ability slots, in slot order.")]
-        private KeyCode[] abilityKeys = { KeyCode.R, KeyCode.Q, KeyCode.Alpha1, KeyCode.Alpha2 };
+        private KeyCode[] abilityKeys = { KeyCode.Q, KeyCode.E, KeyCode.R, KeyCode.C, KeyCode.Tab };
 
         [SerializeField, Tooltip("Key that interacts with campfires and other interactables.")]
-        private KeyCode interactKey = KeyCode.E;
+        private KeyCode interactKey = KeyCode.F;
 
         public Vector2 MoveAxis => new Vector2(UnityEngine.Input.GetAxisRaw("Horizontal"), UnityEngine.Input.GetAxisRaw("Vertical"));
 

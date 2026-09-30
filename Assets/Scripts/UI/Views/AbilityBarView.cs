@@ -24,7 +24,7 @@ namespace DungeonSong.UI
         private bool readKeysFromInput = true;
 
         [SerializeField, Tooltip("Fallback labels, used when the key cannot be read.")]
-        private string[] fallbackKeyLabels = { "F", "Q", "1", "2" };
+        private string[] fallbackKeyLabels = { "Q", "E", "R", "C", "Tab" };
 
         [Header("Refresh")]
         [SerializeField, Min(0f), Tooltip("Seconds between refreshes. Cooldown sweeps look smooth well below every frame.")]

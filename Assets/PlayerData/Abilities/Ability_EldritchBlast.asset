@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.AbilityDefinition
   DisplayName: Eldritch Blast
   Id: eldritch_blast
-  Description: Hurl a beam of crackling otherworldly energy.
+  Description: Cantrip. Hurl a beam of crackling otherworldly energy.
   Icon: {fileID: 0}
   Category: 1
   Tags:
@@ -22,8 +22,9 @@ MonoBehaviour:
   - eldritch
   - ranged
   Cost:
-    Resource: {fileID: 11400000, guid: 809ac0350338c4adc8bc5fce35133709, type: 2}
-    Amount: 15
+    Resource: {fileID: 0}
+    Amount: 0
+  SpendCostOnResolve: 0
   Cooldown: 0.5
   MaxCharges: 0
   Targeting: 1

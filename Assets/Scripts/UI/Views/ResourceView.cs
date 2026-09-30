@@ -5,7 +5,7 @@ using DungeonSong.Player;
 namespace DungeonSong.UI
 {
     /// <summary>
-    /// Shows one resource pool: mana today, soul or faith later.
+    /// Shows one resource pool: the Loyalty bar, or spell slots as pips.
     /// <para>
     /// It displays whichever <see cref="ResourceDefinition"/> it is pointed at, so adding a
     /// second meter is duplicating this object and changing one reference.
@@ -26,8 +26,15 @@ namespace DungeonSong.UI
         [SerializeField] private Text labelText;
 
         [Header("Format")]
-        [SerializeField, Tooltip("{0} is current, {1} is max.")]
+        [SerializeField, Tooltip("{0} is current, {1} is max. With pips on, {0} is the pip string and {1} the label.")]
         private string format = "{0:0}/{1:0}";
+
+        [SerializeField, Tooltip("Show whole units as pips instead of numbers. For spell slots.")]
+        private bool showAsPips;
+
+        [SerializeField] private string filledPip = "\u25C6";
+
+        [SerializeField] private string emptyPip = "\u25C7";
 
         private ResourcePool pool;
 
@@ -77,6 +84,19 @@ namespace DungeonSong.UI
             }
         }
 
+        private string BuildPips(float current, float max)
+        {
+            int total = Mathf.RoundToInt(max);
+            int filled = Mathf.Clamp(Mathf.FloorToInt(current + 0.001f), 0, total);
+            var builder = new System.Text.StringBuilder(total * 2);
+            for (int i = 0; i < total; i++)
+            {
+                builder.Append(i < filled ? filledPip : emptyPip);
+            }
+
+            return builder.ToString();
+        }
+
         private void Refresh()
         {
             float current = pool.GetAmount(resource);
@@ -84,7 +104,9 @@ namespace DungeonSong.UI
 
             if (valueText != null)
             {
-                valueText.text = string.Format(format, current, max);
+                valueText.text = showAsPips
+                    ? string.Format(format, BuildPips(current, max), resource.DisplayName)
+                    : string.Format(format, current, max);
             }
 
             if (fillImage != null)

@@ -5,8 +5,8 @@ using DungeonSong.Player;
 namespace DungeonSong.World
 {
     /// <summary>
-    /// A campfire: the game's rest point and checkpoint, in the spirit of a Hollow Knight
-    /// bench or a D&amp;D long rest.
+    /// A campfire: the game's long rest and checkpoint, in the spirit of a Hollow Knight
+    /// bench or a D&amp;D long rest. Full health, every spell slot back, and a save.
     /// <para>
     /// It is one implementation of <see cref="IRestPoint"/> and <see cref="IInteractable"/>,
     /// and it owns none of the systems it touches. It restores the player, hands the
@@ -33,7 +33,7 @@ namespace DungeonSong.World
         [SerializeField, Tooltip("Restore the player to full health on rest.")]
         private bool healToFull = true;
 
-        [SerializeField, Tooltip("Refill every resource pool on rest.")]
+        [SerializeField, Tooltip("Refill every resource pool that recovers on a long rest (all spell slots). Loyalty is untouched.")]
         private bool restoreResources = true;
 
         [SerializeField, Tooltip("Refill limited-charge abilities and tools on rest.")]
@@ -90,7 +90,7 @@ namespace DungeonSong.World
 
             if (restoreResources)
             {
-                player.Resources?.RestoreAll();
+                player.Resources?.RestoreFor(RestType.Long);
             }
 
             if (restoreAbilityCharges)
@@ -106,12 +106,33 @@ namespace DungeonSong.World
                 {
                     Checkpoint = CheckpointService.Current,
                     PlayerHealth = player.Health?.Current ?? -1f,
+                    Resources = SnapshotResources(player.Resources),
                 });
             }
 
             // Everything else the world wants to do about a rest happens here, from the
             // other side of an event.
             RestEvents.RaiseRested(player, this);
+        }
+
+        private static ResourceSnapshot[] SnapshotResources(ResourcePool pool)
+        {
+            if (pool == null)
+            {
+                return System.Array.Empty<ResourceSnapshot>();
+            }
+
+            var snapshots = new System.Collections.Generic.List<ResourceSnapshot>(pool.Resources.Count);
+            for (int i = 0; i < pool.Resources.Count; i++)
+            {
+                ResourceDefinition definition = pool.Resources[i];
+                if (definition != null)
+                {
+                    snapshots.Add(new ResourceSnapshot { Id = definition.Id, Amount = pool.GetAmount(definition) });
+                }
+            }
+
+            return snapshots.ToArray();
         }
 
         // Registration is trigger-driven, so the player never searches the scene.

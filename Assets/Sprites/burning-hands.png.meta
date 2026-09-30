@@ -1,0 +1,438 @@
+fileFormatVersion: 2
+guid: d43968802a90d48189ec722efbb499c1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3980453959582211139
+    second: burning-hands_0
+  - first:
+      213: 1701115900230612453
+    second: burning-hands_1
+  - first:
+      213: -4208553060625601022
+    second: burning-hands_2
+  - first:
+      213: 986096686895888052
+    second: burning-hands_3
+  - first:
+      213: 2631387039878219974
+    second: burning-hands_4
+  - first:
+      213: -2593581279272285069
+    second: burning-hands_5
+  - first:
+      213: -7097626485814247213
+    second: burning-hands_6
+  - first:
+      213: 1191841432371700377
+    second: burning-hands_7
+  - first:
+      213: -6535657285382462014
+    second: burning-hands_8
+  - first:
+      213: 1609292180870378388
+    second: burning-hands_9
+  - first:
+      213: 5859396379359865779
+    second: burning-hands_10
+  - first:
+      213: 2249326972096623239
+    second: burning-hands_11
+  - first:
+      213: 8404726589342166738
+    second: burning-hands_12
+  - first:
+      213: -6486228749893908109
+    second: burning-hands_13
+  - first:
+      213: -5594411882027268645
+    second: burning-hands_14
+  - first:
+      213: 3628644844126357837
+    second: burning-hands_15
+  - first:
+      213: -8882294530756747864
+    second: burning-hands_16
+  - first:
+      213: -7394517986924154876
+    second: burning-hands_17
+  - first:
+      213: -7163485481348940210
+    second: burning-hands_18
+  - first:
+      213: 7487022505643109359
+    second: burning-hands_19
+  - first:
+      213: -4578858118203995676
+    second: burning-hands_20
+  - first:
+      213: 7713472216355405581
+    second: burning-hands_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 220
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: burning-hands_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 50
+        width: 158
+        height: 485
+      alignment: 9
+      pivot: {x: 0.5119208, y: 0.016494846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34cd1b179c96d3730800000000000000
+      internalID: 3980453959582211139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burning-hands_1
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 50
+        width: 164
+        height: 485
+      alignment: 9
+      pivot: {x: 0.4762214, y: 0.016494846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e5b30bf5e39b9710800000000000000
+      internalID: 1701115900230612453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burning-hands_2
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 50
+        width: 160
+        height: 485
+      alignment: 9
+      pivot: {x: 0.5403429, y: 0.016494846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20e270b0a473895c0800000000000000
+      internalID: -4208553060625601022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burning-hands_3
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 50
+        width: 152
+        height: 485
+      alignment: 9
+      pivot: {x: 0.49963138, y: 0.016494846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b67e9056b15fad00800000000000000
+      internalID: 986096686895888052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burning-hands_4
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 50
+        width: 163
+        height: 485
+      alignment: 9
+      pivot: {x: 0.45848075, y: 0.016494846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c802823290948420800000000000000
+      internalID: 2631387039878219974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burning-hands_5
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 50
+        width: 173
+        height: 485
+      alignment: 9
+      pivot: {x: 0.45897555, y: 0.016494846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37c4fd0619fb10cd0800000000000000
+      internalID: -2593581279272285069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burning-hands_6
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 50
+        width: 191
+        height: 485
+      alignment: 9
+      pivot: {x: 0.43520305, y: 0.016494846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d043a4e05a208d90800000000000000
+      internalID: -7097626485814247213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burning-hands_7
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 50
+        width: 188
+        height: 485
+      alignment: 9
+      pivot: {x: 0.5113084, y: 0.016494846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 992ab15d7754a8010800000000000000
+      internalID: 1191841432371700377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burning-hands_8
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 50
+        width: 179
+        height: 485
+      alignment: 9
+      pivot: {x: 0.46307203, y: 0.016494846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c5a51b835eac45a0800000000000000
+      internalID: -6535657285382462014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: burning-hands_9
+      rect:
+        serializedVersion: 2
+        x: 1698
+        y: 50
+        width: 161
+        height: 485
+      alignment: 9
+      pivot: {x: 0.44796014, y: 0.016494846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 493b79c46ba555610800000000000000
+      internalID: 1609292180870378388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a83edf56e9d2346b691218d8c24a7f58
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      burning-hands_0: 3980453959582211139
+      burning-hands_1: 1701115900230612453
+      burning-hands_10: 5859396379359865779
+      burning-hands_11: 2249326972096623239
+      burning-hands_12: 8404726589342166738
+      burning-hands_13: -6486228749893908109
+      burning-hands_14: -5594411882027268645
+      burning-hands_15: 3628644844126357837
+      burning-hands_16: -8882294530756747864
+      burning-hands_17: -7394517986924154876
+      burning-hands_18: -7163485481348940210
+      burning-hands_19: 7487022505643109359
+      burning-hands_2: -4208553060625601022
+      burning-hands_20: -4578858118203995676
+      burning-hands_21: 7713472216355405581
+      burning-hands_3: 986096686895888052
+      burning-hands_4: 2631387039878219974
+      burning-hands_5: -2593581279272285069
+      burning-hands_6: -7097626485814247213
+      burning-hands_7: 1191841432371700377
+      burning-hands_8: -6535657285382462014
+      burning-hands_9: 1609292180870378388
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

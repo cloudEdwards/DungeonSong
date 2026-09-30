@@ -10,29 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f97238c09efd4d4186ecb3b0e2c7e2b, type: 3}
-  m_Name: Ability_CureWounds
+  m_Name: Ability_BurningHands
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.AbilityDefinition
-  DisplayName: Cure Wounds
-  Id: cure_wounds
-  Description: Paladin spell. Channel divine energy to mend your wounds.
+  DisplayName: Burning Hands
+  Id: burning_hands
+  Description: Warlock spell. A fan of flame bursts from your outstretched hands.
   Icon: {fileID: 0}
-  Category: 33
+  Category: 1
   Tags:
-  - paladin
-  - holy
+  - warlock
+  - fire
   Cost:
-    Resource: {fileID: 11400000, guid: 88d8dbada6aa844e58f34c0363c6c1c7, type: 2}
+    Resource: {fileID: 11400000, guid: 560aa495aaf104c9699091b35122c499, type: 2}
     Amount: 1
   SpendCostOnResolve: 0
   Cooldown: 0.6
   MaxCharges: 0
-  Targeting: 0
-  Range: 0
-  CastTime: 0.35
-  Recovery: 0.15
+  Targeting: 1
+  Range: 2.3
+  CastTime: 0.15
+  Recovery: 0.3
   LockMovement: 1
   InterruptedByDamage: 1
   Requirements: []
-  Effects:
-  - {fileID: 11400000, guid: 06bec2160cf284e6296366065365dd96, type: 2}
+  Effects: []
   AnimationKey: cast

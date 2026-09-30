@@ -9,7 +9,7 @@ namespace DungeonSong.Player
     /// <para>
     /// Values live here, per instance, never in the <see cref="ResourceDefinition"/> asset:
     /// definitions are shared configuration, and writing runtime state into them would make
-    /// every future save and every second player share one mana bar.
+    /// every future save and every second player share one Loyalty bar.
     /// </para>
     /// </summary>
     public class ResourcePool : PlayerModule
@@ -21,6 +21,14 @@ namespace DungeonSong.Player
         /// <summary>Raised on any change, as (definition, current, max).</summary>
         public event Action<ResourceDefinition, float, float> ResourceChanged;
 
+        // Values by resource id for the whole play session. The player object is rebuilt
+        // in every scene, so without this a door would refill spell slots and wipe Loyalty.
+        // Health survives scene loads through PlayerDataDto for the same reason.
+        private static readonly Dictionary<string, float> session = new Dictionary<string, float>();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ClearSession() => session.Clear();
+
         private readonly Dictionary<ResourceDefinition, float> current = new Dictionary<ResourceDefinition, float>();
         private readonly Dictionary<ResourceDefinition, float> regenDelay = new Dictionary<ResourceDefinition, float>();
         private readonly List<ResourceDefinition> tickBuffer = new List<ResourceDefinition>(4);
@@ -30,9 +38,31 @@ namespace DungeonSong.Player
         /// <summary>Every resource this player carries.</summary>
         public IReadOnlyList<ResourceDefinition> Resources => resources;
 
-        protected override void OnBind() => RestoreAll();
+        protected override void OnBind() => LoadSession();
 
-        public override void OnPlayerSpawned() => RestoreAll();
+        public override void OnPlayerInitialized() => Owner.Respawned += OnRespawned;
+
+        private void OnDestroy()
+        {
+            if (Owner != null)
+            {
+                Owner.Respawned -= OnRespawned;
+            }
+        }
+
+        public override void OnPlayerDied()
+        {
+            for (int i = 0; i < resources.Length; i++)
+            {
+                if (resources[i] != null && resources[i].EmptiedOnDeath && current.ContainsKey(resources[i]))
+                {
+                    SetAmount(resources[i], 0f);
+                }
+            }
+        }
+
+        // Waking at a checkpoint after death restores what a long rest would, without the save.
+        private void OnRespawned(PlayerActor player) => RestoreFor(RestType.Long);
 
         /// <summary>Current amount, or 0 for a resource this player does not carry.</summary>
         public float GetAmount(ResourceDefinition definition)
@@ -83,8 +113,44 @@ namespace DungeonSong.Player
             SetAmount(definition, Mathf.Min(definition.MaxAmount, current[definition] + amount));
         }
 
-        /// <summary>Refills every pool. Used on spawn, respawn and at rest points.</summary>
+        /// <summary>True when the pool is at its maximum.</summary>
+        public bool IsFull(ResourceDefinition definition)
+        {
+            return definition != null && current.TryGetValue(definition, out float value) && value >= definition.MaxAmount;
+        }
+
+        /// <summary>
+        /// Refills every pool whose <see cref="ResourceDefinition.RefilledBy"/> includes
+        /// <paramref name="rest"/>. Pools that do not recover on this kind of rest are untouched.
+        /// </summary>
+        public void RestoreFor(RestType rest)
+        {
+            for (int i = 0; i < resources.Length; i++)
+            {
+                ResourceDefinition definition = resources[i];
+                if (definition != null && (definition.RefilledBy & rest) != 0 && current.ContainsKey(definition))
+                {
+                    SetAmount(definition, definition.MaxAmount);
+                }
+            }
+        }
+
+        /// <summary>Resets every pool to its starting amount. For a new game, not for resting.</summary>
         public void RestoreAll()
+        {
+            regenDelay.Clear();
+
+            for (int i = 0; i < resources.Length; i++)
+            {
+                ResourceDefinition definition = resources[i];
+                if (definition != null)
+                {
+                    SetAmount(definition, Mathf.Clamp(definition.StartingAmount, 0f, definition.MaxAmount));
+                }
+            }
+        }
+
+        private void LoadSession()
         {
             current.Clear();
             regenDelay.Clear();
@@ -97,8 +163,8 @@ namespace DungeonSong.Player
                     continue;
                 }
 
-                current[definition] = Mathf.Clamp(definition.StartingAmount, 0f, definition.MaxAmount);
-                ResourceChanged?.Invoke(definition, current[definition], definition.MaxAmount);
+                float value = session.TryGetValue(definition.Id, out float saved) ? saved : definition.StartingAmount;
+                SetAmount(definition, Mathf.Clamp(value, 0f, definition.MaxAmount));
             }
         }
 
@@ -135,6 +201,7 @@ namespace DungeonSong.Player
         private void SetAmount(ResourceDefinition definition, float value)
         {
             current[definition] = value;
+            session[definition.Id] = value;
             ResourceChanged?.Invoke(definition, value, definition.MaxAmount);
         }
     }

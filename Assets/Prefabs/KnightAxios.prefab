@@ -394,6 +394,10 @@ GameObject:
   - component: {fileID: 4902353859298319928}
   - component: {fileID: 2995465671342002913}
   - component: {fileID: 5546356472148973162}
+  - component: {fileID: 5372229322883949663}
+  - component: {fileID: 1912169958386533579}
+  - component: {fileID: 762755471675820702}
+  - component: {fileID: 4198016137984370992}
   m_Layer: 9
   m_Name: KnightAxios
   m_TagString: Player
@@ -666,7 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.LegacyInputSource
   attackMouseButton: 0
-  abilityKeys: 72000000710000003100000032000000
+  abilityKeys: 7100000065000000720000006300000009000000
   interactKey: 102
 --- !u!114 &1124406216173994991
 MonoBehaviour:
@@ -780,6 +784,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.ResourcePool
   resources:
   - {fileID: 11400000, guid: 809ac0350338c4adc8bc5fce35133709, type: 2}
+  - {fileID: 11400000, guid: 560aa495aaf104c9699091b35122c499, type: 2}
+  - {fileID: 11400000, guid: 88d8dbada6aa844e58f34c0363c6c1c7, type: 2}
 --- !u!114 &8584871449406815465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,8 +829,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.AbilityLoadout
   slots:
-  - {fileID: 8584871449406815465}
   - {fileID: 3834473334928794880}
+  - {fileID: 1912169958386533579}
+  - {fileID: 762755471675820702}
+  - {fileID: 8584871449406815465}
+  - {fileID: 4198016137984370992}
 --- !u!114 &4902353859298319928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,6 +880,76 @@ MonoBehaviour:
   showInteraction: 1
   showCheckpoint: 1
   labelOffset: {x: 0, y: 1.6}
+--- !u!114 &5372229322883949663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59b19162690449ce9fc16ac545f797b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.ResourceOnHit
+  resource: {fileID: 11400000, guid: 809ac0350338c4adc8bc5fce35133709, type: 2}
+  amountPerHit: 10
+  countBlockedHits: 0
+--- !u!114 &1912169958386533579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb2eada8589b4ca58c6dfccd16d2bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.SmiteAbility
+  definition: {fileID: 11400000, guid: 53efa7e4da0e949528ebd2f8f68cd099, type: 2}
+  empoweredStrikes: 3
+  duration: 5
+  bonusDamage: 10
+  bonusPoiseDamage: 10
+  bonusDamageType: 64
+  tintTarget: {fileID: 0}
+  empoweredTint: {r: 1, g: 0.85, b: 0.35, a: 1}
+--- !u!114 &762755471675820702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5227c50c627f74421939c90504592557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.HitboxBurstAbility
+  definition: {fileID: 11400000, guid: 326f020f5c4f948488ee2c346470eaba, type: 2}
+  burstPrefab: {fileID: 6977203404849355141, guid: de5e9bbba19554a7b942b27e90e2103d, type: 3}
+  offset: {x: 0.5, y: 0.6}
+  followPlayer: 1
+  activeSeconds: 0.2
+  lifetime: 0.65
+  damage: 20
+  poiseDamage: 15
+  damageType: 24
+  knockbackForce: 4
+--- !u!114 &4198016137984370992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e66127557ab4639874e2603a9f6ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.EffectAbility
+  definition: {fileID: 11400000, guid: 8e30f37e16c32496dbfd7a92b5a211bf, type: 2}
 --- !u!1 &7010492796169314396
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,8 +48,11 @@ namespace DungeonSong.Player
         public string[] Tags = System.Array.Empty<string>();
 
         [Header("Cost")]
-        [Tooltip("Resource spent on activation. Leave the resource empty for a free ability.")]
+        [Tooltip("Resource spent on activation. Leave the resource empty for a free ability — a cantrip.")]
         public ResourceCost Cost;
+
+        [Tooltip("Spend the cost when the ability takes effect instead of when the cast starts, so an interrupted cast costs nothing. The short rest uses this.")]
+        public bool SpendCostOnResolve;
 
         [Min(0f), Tooltip("Seconds before this ability can be used again.")]
         public float Cooldown = 1f;

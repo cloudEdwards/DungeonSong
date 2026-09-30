@@ -37,12 +37,14 @@ points are interfaces the existing classes implement:
         ┌──────────────┬────────────────┼───────────────┬──────────────────┐
         ▼              ▼                ▼               ▼                  ▼
  PlayerInputRouter  PlayerCombat   AbilityLoadout   ResourcePool    PlayerInteractor
- input → intent     selects from   slot → ability   mana/soul/      nearest IInteractable
- + buffering        attack assets        │          charges
-        │              │                 │
+ input → intent     selects from   slot → ability   Loyalty, spell  nearest IInteractable
+ + buffering        attack assets        │          slots (+ResourceOnHit)
+        │       IAttackModifier[]        │
         │       HitboxDirectory    AbilityBehaviour
-        │       keyed hitboxes      ├── ProjectileAbility → Eldritch Blast
-        │              │            └── EffectAbility     → Cure Wounds
+        │       keyed hitboxes      ├── ProjectileAbility  → Eldritch Blast (cantrip)
+        │              │            ├── SmiteAbility       → Divine Smite
+        │              │            ├── HitboxBurstAbility → Burning Hands
+        │              │            └── EffectAbility      → Cure Wounds, Short Rest
         │              │                 │
         │              │           GameplayEffect[]  (DamageEffect, HealEffect, …)
         │              │           AbilityRequirement[] (RequireNearRestPoint, …)
@@ -105,9 +107,9 @@ philosophy.
 | Core | `PlayerActor`, `PlayerModule`, `IPlayerMotionContext` |
 | Input | `PlayerIntent` (+`AttackDirection`), `IPlayerInputSource`, `LegacyInputSource`, `PlayerInputRouter` |
 | Combat | `PlayerAttackDefinition`, `HitboxDirectory`, `PlayerCombat` |
-| Abilities | `AbilityDefinition`, `AbilityBehaviour`, `AbilityRequirement`, `AbilityLoadout`, `ProjectileAbility`, `EffectAbility`, `Targeting` |
-| Effects | `GameplayEffect`/`EffectContext`, `DamageEffect`, `HealEffect` |
-| Resources | `ResourceDefinition`/`ResourceCost`, `ResourcePool` |
+| Abilities | `AbilityDefinition`, `AbilityBehaviour`, `AbilityRequirement`, `AbilityLoadout`, `ProjectileAbility`, `EffectAbility`, `SmiteAbility`, `HitboxBurstAbility`, `Targeting` |
+| Effects | `GameplayEffect`/`EffectContext`, `DamageEffect`, `HealEffect`, `RestoreResourcesEffect` |
+| Resources | `ResourceDefinition`/`ResourceCost`/`RestType`, `ResourcePool`, `ResourceOnHit` |
 | Interaction | `IInteractable`, `PlayerInteractor` |
 | Animation | `IPlayerAnimator`, `PlayerAnimatorAdapter` |
 | Debug | `PlayerDebugOverlay` |
@@ -138,8 +140,11 @@ philosophy.
 | --- | --- |
 | Left mouse | Attack. Direction comes from movement input: neutral = forward, up, down, diagonals in the air, wall attack while wall-sliding |
 | **F** | Interact — "Press F to take a Long Rest" at a campfire |
-| **Q** | Eldritch Blast |
-| **R** | Cure Wounds (only at a campfire) |
+| **Q** | Eldritch Blast — warlock cantrip, cooldown only |
+| **E** | Divine Smite — 1 Paladin slot; next 3 swings deal bonus Holy damage |
+| **R** | Burning Hands — 1 Warlock slot; short cone of fire |
+| **C** | Cure Wounds — 1 Paladin slot; heal anywhere |
+| **Tab** | Short Rest — needs a full Loyalty bar; ~1s channel, broken by damage |
 | Right mouse | Block (unchanged, still in `PlayerController`) |
 
 Bindings live on `LegacyInputSource`. The HUD reads them, so rebinding updates prompts and
@@ -153,8 +158,31 @@ the ability bar automatically.
 | --- | --- |
 | 7 attacks | 3-hit forward chain, up, grounded down, airborne pogo (`RecoilOnHit: 9`), wall strike — all one framework, zero attack-specific code |
 | Eldritch Blast | `ProjectileAbility` + `AbilityDefinition` + `ProjectileDefinition`. Reuses the enemy projectile system |
-| Cure Wounds | `EffectAbility` + `HealEffect` + `RequireNearRestPoint`. No healing-specific code anywhere |
-| Campfire | `IInteractable` + `IRestPoint`: heals, restores resources and charges, sets checkpoint, saves, raises `RestEvents` |
+| Cure Wounds | `EffectAbility` + `HealEffect`, costing a Paladin slot. No healing-specific code anywhere |
+| Campfire | `IInteractable` + `IRestPoint`: the long rest. Full heal, `RestoreFor(RestType.Long)`, sets checkpoint, saves, raises `RestEvents` |
+
+### Spell slots, Loyalty and resting
+
+D&D-style casting, all built on `ResourceDefinition` — a spell slot is a resource with a
+max of 2 and a cost of 1, so no casting code knows slots exist.
+
+| Resource | Max | Refilled by | Notes |
+| --- | --- | --- | --- |
+| `Resource_WarlockSlots` | 2 | Short + Long rest | Burning Hands |
+| `Resource_PaladinSlots` | 2 | Long rest | Divine Smite, Cure Wounds |
+| `Resource_Loyalty` | 100 | never — earned | +10 per landed hit (`ResourceOnHit`), emptied on death. Formerly mana; same GUID |
+
+- **Cantrip** = an ability with an empty **Cost**. Cooldown is its only limit.
+- **Short rest** (`Ability_ShortRest`) is an `EffectAbility` costing `{Loyalty, 100}` with
+  **Spend Cost On Resolve** on, so an interrupted rest keeps the Loyalty. Its effects are
+  `HealEffect` (50% of max) + `RestoreResourcesEffect(Short)`.
+- **Long rest** is the campfire. Loyalty is untouched.
+- **Death** empties Loyalty; respawning refills what a long rest would, without saving.
+- Pool values live for the whole session in `ResourcePool`, keyed by resource **Id**, because
+  the player object is rebuilt in every scene. Slot counts are fixed data on the assets
+  today; a levelling system raises **Max Amount**.
+- Loyalty gain listens to `CombatEvents.DamageDealt`, raised by `Hurtbox.Receive`, so every
+  attack — melee, projectile, cone, smite — counts without opting in.
 | Hit feedback | `DungeonSong/SpriteFlash` shader + green blood particles, via `MaterialPropertyBlock` |
 
 ---
@@ -187,8 +215,8 @@ the ability bar automatically.
    `Attack2` because no dedicated clips exist. Rebinding is data on `PlayerAnimatorAdapter`.
 4. **Attack timing is numeric, not animation-driven.** The enemy framework supports clip
    events; the player does not yet. Worth adding when real attack animations land.
-5. **Save data is minimal** — checkpoint and health only. No world state, unlocks or
-   inventory.
+5. **Save data is minimal** — checkpoint, health and resource pools. No world state,
+   unlocks or inventory, and **nothing loads it yet**: `GameSave.Service.Load()` has no caller.
 6. **`SpriteFlash` is unlit.** Fine today (no `Light2D` in any scene); needs a URP 2D lit
    variant if lights are added.
 7. **Two enums named `AttackPhase`** existed briefly; the player's is `PlayerAttackPhase`.

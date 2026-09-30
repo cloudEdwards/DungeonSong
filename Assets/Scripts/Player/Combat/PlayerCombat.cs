@@ -15,6 +15,16 @@ namespace DungeonSong.Player
     }
 
     /// <summary>
+    /// Adjusts a swing's damage just before its hitbox opens: Divine Smite's radiant
+    /// bonus, and later weapon enchantments or buffs.
+    /// </summary>
+    public interface IAttackModifier
+    {
+        /// <summary>Called once per swing whose hitbox opens. Removing yourself from here is safe.</summary>
+        void ModifyAttack(PlayerAttackDefinition attack, ref DamageInfo info);
+    }
+
+    /// <summary>
     /// Selects and runs the player's attacks.
     /// <para>
     /// It holds a list of <see cref="PlayerAttackDefinition"/> assets and answers one
@@ -47,6 +57,7 @@ namespace DungeonSong.Player
         public event Action<PlayerAttackDefinition, Hurtbox, DamageResult> AttackHit;
 
         private readonly Dictionary<PlayerAttackDefinition, float> cooldowns = new Dictionary<PlayerAttackDefinition, float>();
+        private readonly List<IAttackModifier> attackModifiers = new List<IAttackModifier>(2);
 
         private PlayerInputRouter input;
         private HitboxDirectory hitboxes;
@@ -73,6 +84,17 @@ namespace DungeonSong.Player
 
         /// <summary>True while a follow-up attack may still be queued.</summary>
         public bool IsComboWindowOpen => comboWindowTimer > 0f && comboNext != null;
+
+        /// <summary>Registers a modifier applied to every swing until removed.</summary>
+        public void AddAttackModifier(IAttackModifier modifier)
+        {
+            if (modifier != null && !attackModifiers.Contains(modifier))
+            {
+                attackModifiers.Add(modifier);
+            }
+        }
+
+        public void RemoveAttackModifier(IAttackModifier modifier) => attackModifiers.Remove(modifier);
 
         protected override void OnBind()
         {
@@ -371,6 +393,13 @@ namespace DungeonSong.Player
             activeHitbox.Hit += OnHitboxHit;
 
             DamageInfo info = current.Payload.ToDamageInfo(Owner.Team, transform.position, gameObject, currentAttackId);
+
+            // Backwards, so a modifier that spends its last charge can remove itself.
+            for (int i = attackModifiers.Count - 1; i >= 0; i--)
+            {
+                attackModifiers[i].ModifyAttack(current, ref info);
+            }
+
             activeHitbox.Activate(in info);
         }
 

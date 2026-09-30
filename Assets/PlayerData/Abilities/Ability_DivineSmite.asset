@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f97238c09efd4d4186ecb3b0e2c7e2b, type: 3}
-  m_Name: Ability_CureWounds
+  m_Name: Ability_DivineSmite
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.AbilityDefinition
-  DisplayName: Cure Wounds
-  Id: cure_wounds
-  Description: Paladin spell. Channel divine energy to mend your wounds.
+  DisplayName: Divine Smite
+  Id: divine_smite
+  Description: Paladin spell. Your next three swings burn with radiant power.
   Icon: {fileID: 0}
-  Category: 33
+  Category: 5
   Tags:
   - paladin
   - holy
@@ -24,15 +24,14 @@ MonoBehaviour:
     Resource: {fileID: 11400000, guid: 88d8dbada6aa844e58f34c0363c6c1c7, type: 2}
     Amount: 1
   SpendCostOnResolve: 0
-  Cooldown: 0.6
+  Cooldown: 0.5
   MaxCharges: 0
   Targeting: 0
   Range: 0
-  CastTime: 0.35
-  Recovery: 0.15
-  LockMovement: 1
-  InterruptedByDamage: 1
+  CastTime: 0.1
+  Recovery: 0.05
+  LockMovement: 0
+  InterruptedByDamage: 0
   Requirements: []
-  Effects:
-  - {fileID: 11400000, guid: 06bec2160cf284e6296366065365dd96, type: 2}
+  Effects: []
   AnimationKey: cast

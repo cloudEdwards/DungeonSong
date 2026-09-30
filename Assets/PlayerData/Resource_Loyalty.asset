@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 158b40c6a5d4442e3a4cc7f2bcb923fb, type: 3}
-  m_Name: Resource_Mana
+  m_Name: Resource_Loyalty
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.ResourceDefinition
-  DisplayName: Mana
-  Id: mana
+  DisplayName: Loyalty
+  Id: loyalty
   MaxAmount: 100
-  StartingAmount: 100
-  RegenPerSecond: 4
-  RegenDelay: 1.5
+  StartingAmount: 0
+  RegenPerSecond: 0
+  RegenDelay: 0
+  RefilledBy: 0
+  EmptiedOnDeath: 1

@@ -72,7 +72,9 @@ namespace DungeonSong.Combat
 
             info.Amount *= damageMultiplier;
             info.PoiseDamage *= damageMultiplier;
-            return target.TakeDamage(in info);
+            DamageResult result = target.TakeDamage(in info);
+            CombatEvents.RaiseDamageDealt(in info, in result, this);
+            return result;
         }
     }
 }

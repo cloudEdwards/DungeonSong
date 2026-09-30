@@ -28,7 +28,7 @@ namespace DungeonSong.UI
         [SerializeField, Tooltip("Ability name.")]
         private Text nameText;
 
-        [SerializeField, Tooltip("Remaining charges. Hidden for abilities with unlimited uses.")]
+        [SerializeField, Tooltip("Remaining charges, or a running effect's stacks. Hidden when there is neither.")]
         private Text chargesText;
 
         [Header("Availability")]
@@ -97,11 +97,13 @@ namespace DungeonSong.UI
 
             if (chargesText != null)
             {
-                bool hasCharges = ability.ChargesRemaining >= 0;
-                chargesText.enabled = hasCharges;
-                if (hasCharges)
+                // A running effect's counter (Smite's empowered strikes) outranks charges.
+                int count = ability.ActiveStacks > 0 ? ability.ActiveStacks : ability.ChargesRemaining;
+                bool show = count >= 0;
+                chargesText.enabled = show;
+                if (show)
                 {
-                    chargesText.text = ability.ChargesRemaining.ToString();
+                    chargesText.text = count.ToString();
                 }
             }
 
