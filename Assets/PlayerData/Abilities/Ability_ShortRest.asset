@@ -31,6 +31,7 @@ MonoBehaviour:
   CastTime: 1
   Recovery: 0.2
   LockMovement: 1
+  SuspendInAir: 1
   InterruptedByDamage: 1
   Requirements: []
   Effects:

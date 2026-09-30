@@ -53,6 +53,8 @@ namespace DungeonSong.Player
         private int charges = -1;
         private bool resolving;
         private bool movementLocked;
+        private bool suspended;
+        private float suspendedGravityScale;
 
         public override int TickOrder => PlayerTickOrder.Abilities;
 
@@ -181,6 +183,11 @@ namespace DungeonSong.Player
                 movementLocked = true;
             }
 
+            if (definition.SuspendInAir)
+            {
+                BeginSuspend();
+            }
+
             Owner.Animation.PlayAction(definition.AnimationKey);
             OnActivated();
             Activated?.Invoke(this);
@@ -197,6 +204,11 @@ namespace DungeonSong.Player
             if (!IsRunning)
             {
                 return;
+            }
+
+            if (suspended)
+            {
+                Owner.Body.linearVelocity = Vector2.zero;
             }
 
             phaseTimer -= deltaTime;
@@ -289,6 +301,39 @@ namespace DungeonSong.Player
             {
                 Owner.PopMovementLock();
                 movementLocked = false;
+            }
+
+            EndSuspend();
+        }
+
+        /// <summary>
+        /// Hangs an airborne player in place by switching gravity off, until the ability
+        /// ends. Grounded casts are left alone.
+        /// </summary>
+        private void BeginSuspend()
+        {
+            if (suspended || Owner.Body == null || Owner.Motion == null || Owner.Motion.IsGrounded)
+            {
+                return;
+            }
+
+            suspended = true;
+            suspendedGravityScale = Owner.Body.gravityScale;
+            Owner.Body.gravityScale = 0f;
+            Owner.Body.linearVelocity = Vector2.zero;
+        }
+
+        private void EndSuspend()
+        {
+            if (!suspended)
+            {
+                return;
+            }
+
+            suspended = false;
+            if (Owner.Body != null)
+            {
+                Owner.Body.gravityScale = suspendedGravityScale;
             }
         }
 

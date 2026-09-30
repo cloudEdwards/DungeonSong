@@ -77,6 +77,9 @@ namespace DungeonSong.Player
         [Tooltip("Root the player while casting.")]
         public bool LockMovement = true;
 
+        [Tooltip("When cast in the air, hang in place instead of falling until the ability finishes. The short rest uses this, like Silksong's bind.")]
+        public bool SuspendInAir;
+
         [Tooltip("Can taking damage interrupt this cast?")]
         public bool InterruptedByDamage = true;
 

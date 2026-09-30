@@ -75,6 +75,7 @@ Spells are abilities. There is no spell system.
 | **Targeting** | `Self`, `Direction`, `NearestEnemy`, `PointInFront` |
 | **Cast Time / Recovery** | Wind-up and commitment |
 | **Lock Movement** | Root the player while casting |
+| **Suspend In Air** | Cast in the air, hang in place (gravity off) until the ability finishes |
 | **Effects** | Applied on resolve. Leave empty when a projectile carries the damage |
 | **Requirements** | Conditions that must hold (see §5) |
 | **Animation Key** | Semantic key |

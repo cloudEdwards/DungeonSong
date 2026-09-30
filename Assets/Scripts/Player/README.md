@@ -174,7 +174,8 @@ max of 2 and a cost of 1, so no casting code knows slots exist.
 
 - **Cantrip** = an ability with an empty **Cost**. Cooldown is its only limit.
 - **Short rest** (`Ability_ShortRest`) is an `EffectAbility` costing `{Loyalty, 100}` with
-  **Spend Cost On Resolve** on, so an interrupted rest keeps the Loyalty. Its effects are
+  **Spend Cost On Resolve** on, so an interrupted rest keeps the Loyalty, and **Suspend In
+  Air** on, so resting mid-jump hangs in place like Silksong's bind. Its effects are
   `HealEffect` (50% of max) + `RestoreResourcesEffect(Short)`.
 - **Long rest** is the campfire. Loyalty is untouched.
 - **Death** empties Loyalty; respawning refills what a long rest would, without saving.
