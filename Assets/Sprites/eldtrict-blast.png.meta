@@ -1,0 +1,308 @@
+fileFormatVersion: 2
+guid: 362b3fe61774d4b8bbf9ca5dd06dc873
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3439497663611276877
+    second: eldtrict-blast_0
+  - first:
+      213: -7330769348587351465
+    second: eldtrict-blast_1
+  - first:
+      213: 6996780245734699868
+    second: eldtrict-blast_2
+  - first:
+      213: -348633566182992341
+    second: eldtrict-blast_3
+  - first:
+      213: -6423765525197292779
+    second: eldtrict-blast_4
+  - first:
+      213: 122194847487465464
+    second: eldtrict-blast_5
+  - first:
+      213: 2243808090051975484
+    second: eldtrict-blast_6
+  - first:
+      213: 2401461834358361837
+    second: eldtrict-blast_7
+  - first:
+      213: 3435090168654588444
+    second: eldtrict-blast_8
+  - first:
+      213: 3343256897730169554
+    second: eldtrict-blast_9
+  - first:
+      213: 1655833052143140226
+    second: eldtrict-blast_10
+  - first:
+      213: -4113863213736515014
+    second: eldtrict-blast_11
+  - first:
+      213: -3556158072181673620
+    second: eldtrict-blast_12
+  - first:
+      213: 1679929496000002793
+    second: eldtrict-blast_13
+  - first:
+      213: 5239652957484378179
+    second: eldtrict-blast_14
+  - first:
+      213: -5090538776827379533
+    second: eldtrict-blast_15
+  - first:
+      213: -7263853094657696921
+    second: eldtrict-blast_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 160
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: eldtrict-blast_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 774
+        width: 490
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e065dd6ec8bbf20800000000000000
+      internalID: 3439497663611276877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eldtrict-blast_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 592
+        width: 490
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75211271e10e34a90800000000000000
+      internalID: -7330769348587351465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eldtrict-blast_2
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 403
+        width: 490
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c53bc7e109e891160800000000000000
+      internalID: 6996780245734699868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eldtrict-blast_3
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 204
+        width: 490
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2692e26e97692bf0800000000000000
+      internalID: -348633566182992341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eldtrict-blast_4
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 14
+        width: 490
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51bf6361a433ad6a0800000000000000
+      internalID: -6423765525197292779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e7a501154a02c49eb9ae53f56a7e8361
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      eldtrict-blast_0: 3439497663611276877
+      eldtrict-blast_1: -7330769348587351465
+      eldtrict-blast_10: 1655833052143140226
+      eldtrict-blast_11: -4113863213736515014
+      eldtrict-blast_12: -3556158072181673620
+      eldtrict-blast_13: 1679929496000002793
+      eldtrict-blast_14: 5239652957484378179
+      eldtrict-blast_15: -5090538776827379533
+      eldtrict-blast_16: -7263853094657696921
+      eldtrict-blast_2: 6996780245734699868
+      eldtrict-blast_3: -348633566182992341
+      eldtrict-blast_4: -6423765525197292779
+      eldtrict-blast_5: 122194847487465464
+      eldtrict-blast_6: 2243808090051975484
+      eldtrict-blast_7: 2401461834358361837
+      eldtrict-blast_8: 3435090168654588444
+      eldtrict-blast_9: 3343256897730169554
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
