@@ -297,6 +297,7 @@ namespace DungeonSong.PlayMode.Tests
             }
 
             Assume.That(enemy, Is.Not.Null, "Scene1 needs an enemy for this test.");
+            Assert.AreEqual(0f, Amount(player, "loyalty"), "A fresh session starts with no Loyalty.");
 
             enemy.Receive(DamageInfo.Create(1f, player.Team, enemy.transform.position, player.gameObject));
             Assert.AreEqual(10f, Amount(player, "loyalty"), "+10 Loyalty per landed hit.");

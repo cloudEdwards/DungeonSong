@@ -2556,10 +2556,6 @@ PrefabInstance:
       propertyPath: damageIFrames
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5372229322883949663, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
-      propertyPath: amountPerHit
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 5558316226936854118, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.5
