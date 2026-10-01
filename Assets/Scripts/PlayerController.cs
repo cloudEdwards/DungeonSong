@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour, IPlayerMotionContext {
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
     private bool                m_movementLocked;
+    private IPlayerInputSource  m_input;
+    private float               m_smoothedX;
 
 
     // Use this for initialization
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour, IPlayerMotionContext {
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
+        m_input = GetComponent<IPlayerInputSource>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
         m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight>();
@@ -77,8 +80,12 @@ public class PlayerController : MonoBehaviour, IPlayerMotionContext {
         }
 
         // -- Handle input and movement --
-        float inputX = m_movementLocked ? 0f : Input.GetAxis("Horizontal");
-        float inputXRaw = m_movementLocked ? 0f : Input.GetAxisRaw("Horizontal");
+        // The Input System reports raw values; InputAxisSmoothing restores the ramp the old
+        // Input.GetAxis("Horizontal") had, which running speed depends on.
+        float rawX = m_input != null ? m_input.MoveAxis.x : 0f;
+        m_smoothedX = InputAxisSmoothing.Step(m_smoothedX, rawX, Time.deltaTime);
+        float inputX = m_movementLocked ? 0f : m_smoothedX;
+        float inputXRaw = m_movementLocked ? 0f : rawX;
 
         // Swap direction of sprite depending on walk direction
         float inputTolerance = m_isWallSliding ? 0.9f : 0;
@@ -151,17 +158,17 @@ public class PlayerController : MonoBehaviour, IPlayerMotionContext {
         // allows new attacks and abilities to be added without editing this file.
 
         // Block
-        if (Input.GetMouseButtonDown(1) && !m_rolling)
+        if (m_input != null && m_input.BlockPressed && !m_rolling)
         {
             m_animator.SetTrigger("Block");
             m_animator.SetBool("IdleBlock", true);
         }
 
-        else if (Input.GetMouseButtonUp(1))
+        else if (m_input != null && m_input.BlockReleased)
             m_animator.SetBool("IdleBlock", false);
 
         // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)
+        else if (m_input != null && m_input.RollPressed && !m_rolling && !m_isWallSliding)
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
@@ -170,7 +177,7 @@ public class PlayerController : MonoBehaviour, IPlayerMotionContext {
             
 
         //Jump
-        else if (Input.GetKeyDown("space") && (m_grounded || m_isWallSliding) && !m_rolling)
+        else if (m_input != null && m_input.JumpPressed && (m_grounded || m_isWallSliding) && !m_rolling)
         {
             // Wall Jumping
             if (m_isWallSliding && !m_grounded)
@@ -199,7 +206,7 @@ public class PlayerController : MonoBehaviour, IPlayerMotionContext {
             m_animator.SetBool("Grounded", m_grounded);
         }
         // pressure sensitive jump
-        else if (Input.GetKeyUp("space") && m_body2d.linearVelocity.y > 0)
+        else if (m_input != null && m_input.JumpReleased && m_body2d.linearVelocity.y > 0)
         {
             m_body2d.linearVelocity = new Vector2(m_body2d.linearVelocity.x, m_body2d.linearVelocity.y * 0.5f);
         }

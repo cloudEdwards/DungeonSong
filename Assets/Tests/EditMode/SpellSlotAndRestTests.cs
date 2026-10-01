@@ -560,21 +560,44 @@ namespace DungeonSong.Enemies.Tests
         [Test]
         public void Player_HasTheAgreedKeyLayout()
         {
+            const string actionsPath = "Assets/InputSystem_Actions.inputactions";
             var knight = Load<GameObject>("Assets/Prefabs/KnightAxios.prefab");
-            var input = knight.GetComponent<LegacyInputSource>();
-            var loadout = knight.GetComponent<AbilityLoadout>();
+            var shipped = knight.GetComponent<InputSystemSource>();
+            Assert.IsNotNull(shipped, "The knight reads its controls through the Input System.");
 
-            string[] keys = { "Q", "E", "R", "C", "Tab" };
-            string[] ids = { "eldritch_blast", "divine_smite", "burning_hands", "cure_wounds", "short_rest" };
+            // The knight uses the project-wide actions, and those are InputSystem_Actions.
+            Assert.IsNull(new UnityEditor.SerializedObject(shipped).FindProperty("actions").objectReferenceValue,
+                "The knight should read the project-wide actions, not a private copy.");
+            UnityEditor.EditorBuildSettings.TryGetConfigObject("com.unity.input.settings.actions", out UnityEngine.InputSystem.InputActionAsset projectWide);
+            Assert.AreEqual(actionsPath, UnityEditor.AssetDatabase.GetAssetPath(projectWide), "Project-wide actions asset.");
 
-            Assert.AreEqual(ids.Length, loadout.Slots.Count);
-            for (int i = 0; i < ids.Length; i++)
+            // Read the labels through that asset explicitly: test runs can swap global input state.
+            var go = new GameObject("LayoutProbe");
+            try
             {
-                Assert.AreEqual(keys[i], input.GetAbilityKeyLabel(i), $"Slot {i} key");
-                Assert.AreEqual(ids[i], loadout.Slots[i].Definition.Id, $"Slot {i} ability");
-            }
+                var input = go.AddComponent<InputSystemSource>();
+                var so = new UnityEditor.SerializedObject(input);
+                so.FindProperty("actions").objectReferenceValue = Load<UnityEngine.InputSystem.InputActionAsset>(actionsPath);
+                so.ApplyModifiedPropertiesWithoutUndo();
 
-            Assert.AreEqual("F", input.InteractKeyLabel, "F stays interact / long rest.");
+                var loadout = knight.GetComponent<AbilityLoadout>();
+                string[] keys = { "Q", "E", "R", "C", "Tab" };
+                string[] ids = { "eldritch_blast", "divine_smite", "burning_hands", "cure_wounds", "short_rest" };
+
+                Assert.AreEqual(ids.Length, loadout.Slots.Count);
+                Assert.AreEqual(keys.Length, input.AbilitySlotCount);
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    Assert.AreEqual(keys[i], input.GetAbilityKeyLabel(i), $"Slot {i} key");
+                    Assert.AreEqual(ids[i], loadout.Slots[i].Definition.Id, $"Slot {i} ability");
+                }
+
+                Assert.AreEqual("F", input.InteractKeyLabel, "F stays interact / long rest.");
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(go);
+            }
         }
 
         [Test]

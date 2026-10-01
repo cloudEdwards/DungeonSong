@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace DungeonSong.Combat
 {
@@ -7,7 +8,7 @@ namespace DungeonSong.Combat
     /// Draws attack hitboxes in the Game view while they are live, for tuning attacks that
     /// have no animation of their own yet (the up and down slashes).
     /// <para>
-    /// Toggle with <see cref="ToggleKey"/> during play. In the Editor,
+    /// Toggle with the <c>Debug/ToggleHitboxes</c> action (F1) during play. In the Editor,
     /// Dungeon ▸ Debug ▸ Show Hitboxes sets whether it starts on. Off, it costs nothing:
     /// outlines are only created the first time a hitbox opens while it is on.
     /// </para>
@@ -23,8 +24,24 @@ namespace DungeonSong.Combat
 
         private static bool visible;
 
-        /// <summary>Key that toggles the outlines during play.</summary>
-        public static KeyCode ToggleKey { get; set; } = KeyCode.F1;
+        /// <summary>Action, in the project-wide actions asset, that toggles the outlines.</summary>
+        public const string ToggleActionPath = "Debug/ToggleHitboxes";
+
+        /// <summary>The toggle's key as the player would read it, e.g. "F1".</summary>
+        public static string ToggleLabel
+        {
+            get
+            {
+                InputAction action = FindToggleAction();
+                return action != null ? action.GetBindingDisplayString() : "(unbound)";
+            }
+        }
+
+        /// <summary>The toggle action, or null when the project's actions don't define it.</summary>
+        public static InputAction FindToggleAction()
+        {
+            return InputSystem.actions != null ? InputSystem.actions.FindAction(ToggleActionPath) : null;
+        }
 
         /// <summary>Seconds an outline stays up after its hitbox closes, so short swings are readable.</summary>
         public static float LingerSeconds { get; set; } = 0.2f;
@@ -139,15 +156,23 @@ namespace DungeonSong.Combat
         }
     }
 
-    /// <summary>Reads the toggle key. Debug tooling, so it reads input directly.</summary>
+    /// <summary>Watches the toggle action. Debug tooling, so it reads its action directly.</summary>
     internal sealed class HitboxDebugToggle : MonoBehaviour
     {
+        private InputAction toggle;
+
+        private void OnEnable()
+        {
+            toggle = HitboxDebug.FindToggleAction();
+            toggle?.Enable();
+        }
+
         private void Update()
         {
-            if (Input.GetKeyDown(HitboxDebug.ToggleKey))
+            if (toggle != null && toggle.WasPressedThisFrame())
             {
                 HitboxDebug.Visible = !HitboxDebug.Visible;
-                Debug.Log($"Hitbox outlines {(HitboxDebug.Visible ? "on" : "off")} ({HitboxDebug.ToggleKey}).");
+                Debug.Log($"Hitbox outlines {(HitboxDebug.Visible ? "on" : "off")} ({HitboxDebug.ToggleLabel}).");
             }
         }
     }

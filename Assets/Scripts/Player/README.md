@@ -105,7 +105,7 @@ philosophy.
 | Area | Files |
 | --- | --- |
 | Core | `PlayerActor`, `PlayerModule`, `IPlayerMotionContext` |
-| Input | `PlayerIntent` (+`AttackDirection`), `IPlayerInputSource`, `LegacyInputSource`, `PlayerInputRouter` |
+| Input | `PlayerIntent` (+`AttackDirection`), `IPlayerInputSource`, `InputSystemSource`, `InputAxisSmoothing`, `PlayerInputRouter` |
 | Combat | `PlayerAttackDefinition`, `HitboxDirectory`, `PlayerCombat` |
 | Abilities | `AbilityDefinition`, `AbilityBehaviour`, `AbilityRequirement`, `AbilityLoadout`, `ProjectileAbility`, `EffectAbility`, `SmiteAbility`, `HitboxBurstAbility`, `Targeting` |
 | Effects | `GameplayEffect`/`EffectContext`, `DamageEffect`, `HealEffect`, `RestoreResourcesEffect` |
@@ -147,10 +147,14 @@ Editor: `SaveMenu` (Dungeon ▸ Save)
 | **R** | Burning Hands — 1 Warlock slot; short cone of fire |
 | **C** | Cure Wounds — 1 Paladin slot; heal anywhere |
 | **Tab** | Short Rest — needs a full Loyalty bar; ~1s channel, broken by damage |
-| Right mouse | Block (unchanged, still in `PlayerController`) |
+| Right mouse | Block |
+| **Space** / **Left Shift** | Jump / roll |
 
-Bindings live on `LegacyInputSource`. The HUD reads them, so rebinding updates prompts and
-the ability bar automatically.
+Bindings are actions in the project-wide `Assets/InputSystem_Actions.inputactions`, read by
+`InputSystemSource`. The HUD reads its labels from the same bindings, so rebinding updates
+prompts and the ability bar automatically, and they switch to pad buttons while a gamepad is
+in use. Gamepad: stick moves · A jump · X attack · Y interact · RB roll · LB block ·
+RT Eldritch Blast · LT Divine Smite · B Burning Hands · D↓ Cure Wounds · Select Short Rest.
 
 ---
 

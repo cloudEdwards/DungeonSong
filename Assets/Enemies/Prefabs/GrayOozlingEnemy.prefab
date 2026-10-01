@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced4069f440fb449780d1fa300d043d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.EnemyPerception
-  settingsOverride: {fileID: 11400000, guid: 66d855af2d45a48faa321e0514114f10, type: 2}
+  settingsOverride: {fileID: 11400000, guid: ba5d9f00e81414e029d542aafd84c701, type: 2}
   eye: {fileID: 6048989407538616794}
   drawGizmos: 1
 --- !u!114 &8607207641613701711
@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a28b3cf6ac74197ae96e27ebe1a545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.MeleeAttack
-  definition: {fileID: 11400000, guid: 226d6728dddf5422c9fec10962dbc2da, type: 2}
+  definition: {fileID: 11400000, guid: df93f3c1f7b724b37a897b288d963aa1, type: 2}
   hitbox: {fileID: 8761920680677615726}
   targetTeams: 1
   hitConfirmAnimationKey: 

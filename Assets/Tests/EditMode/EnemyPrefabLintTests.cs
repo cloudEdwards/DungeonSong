@@ -11,7 +11,11 @@ namespace DungeonSong.Enemies.Tests
     /// </summary>
     public class EnemyPrefabLintTests
     {
-        private static IEnumerable<TestCaseData> EnemyPrefabs()
+        private static IEnumerable<TestCaseData> EnemyPrefabs() => Prefabs("MeleeEnemy_CanCloseDistance");
+
+        private static IEnumerable<TestCaseData> ChasingMeleePrefabs() => Prefabs("Chase_StopsWithinAttackReach");
+
+        private static IEnumerable<TestCaseData> Prefabs(string testName)
         {
             foreach (string guid in AssetDatabase.FindAssets("t:Prefab", new[] { "Assets" }))
             {
@@ -19,7 +23,7 @@ namespace DungeonSong.Enemies.Tests
                 var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
                 if (prefab != null && prefab.GetComponent<Enemy>() != null)
                 {
-                    yield return new TestCaseData(path).SetName($"MeleeEnemy_CanCloseDistance({prefab.name})");
+                    yield return new TestCaseData(path).SetName($"{testName}({prefab.name})");
                 }
             }
         }
@@ -40,6 +44,28 @@ namespace DungeonSong.Enemies.Tests
 
             bool canApproach = prefab.GetComponent<ChaseState>() != null || prefab.GetComponent<MaintainDistanceState>() != null;
             Assert.IsTrue(canApproach, $"{prefab.name} has a MeleeAttack but no ChaseState or MaintainDistanceState, so it can never reach the player.");
+        }
+
+        /// <summary>
+        /// The chase stops at <c>stopDistance</c>; the swing reaches <c>MaxRange</c>. If the
+        /// chase stops further out than the swing reaches, the enemy walks up to the player
+        /// and then never attacks.
+        /// </summary>
+        [TestCaseSource(nameof(ChasingMeleePrefabs))]
+        public void Chase_StopsWithinAttackReach(string path)
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            var chase = prefab.GetComponent<ChaseState>();
+            var melee = prefab.GetComponent<MeleeAttack>();
+            if (chase == null || melee == null)
+            {
+                Assert.Pass("Does not chase into melee.");
+            }
+
+            float stop = new SerializedObject(chase).FindProperty("stopDistance").floatValue;
+            var definition = new SerializedObject(melee).FindProperty("definition").objectReferenceValue as AttackDefinition;
+            Assert.IsNotNull(definition, $"{prefab.name}'s MeleeAttack has no AttackDefinition.");
+            Assert.Less(stop, definition.MaxRange, $"{prefab.name} stops chasing at {stop} but its {definition.name} only reaches {definition.MaxRange}.");
         }
     }
 }

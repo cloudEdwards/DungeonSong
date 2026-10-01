@@ -382,7 +382,6 @@ GameObject:
   - component: {fileID: 9117128348835321587}
   - component: {fileID: 855976272162238516}
   - component: {fileID: 8920000243557437125}
-  - component: {fileID: 6737817520618429622}
   - component: {fileID: 1124406216173994991}
   - component: {fileID: 6579812695781408761}
   - component: {fileID: 5651073445159850690}
@@ -398,6 +397,7 @@ GameObject:
   - component: {fileID: 1912169958386533579}
   - component: {fileID: 762755471675820702}
   - component: {fileID: 4198016137984370992}
+  - component: {fileID: 2478207659219243641}
   m_Layer: 9
   m_Name: KnightAxios
   m_TagString: Player
@@ -657,21 +657,6 @@ MonoBehaviour:
   team: 1
   hostileTeams: 2
   initializeOnAwake: 1
---- !u!114 &6737817520618429622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6323719953710832613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8baa78deba5314b6797732be8f435b6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.LegacyInputSource
-  attackMouseButton: 0
-  abilityKeys: 7100000065000000720000006300000009000000
-  interactKey: 102
 --- !u!114 &1124406216173994991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,7 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738486e1347a545c48dab43416e2641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.PlayerInputRouter
-  inputSourceComponent: {fileID: 6737817520618429622}
+  inputSourceComponent: {fileID: 2478207659219243641}
   attackBufferSeconds: 0.18
   abilityBufferSeconds: 0.15
   directionDeadzone: 0.5
@@ -950,6 +935,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.EffectAbility
   definition: {fileID: 11400000, guid: 8e30f37e16c32496dbfd7a92b5a211bf, type: 2}
+--- !u!114 &2478207659219243641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6323719953710832613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1455a3d09fc24c26809551a5fd577c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.InputSystemSource
+  actions: {fileID: 0}
+  mapName: Player
+  abilityActionNames:
+  - Ability1
+  - Ability2
+  - Ability3
+  - Ability4
+  - Ability5
 --- !u!1 &7010492796169314396
 GameObject:
   m_ObjectHideFlags: 0

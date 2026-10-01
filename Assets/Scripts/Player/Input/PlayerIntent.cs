@@ -57,8 +57,9 @@ namespace DungeonSong.Player
     }
 
     /// <summary>
-    /// Raw input, separated from meaning. Swapping the legacy Input API for the Input
-    /// System package is a matter of writing a second implementation of this.
+    /// Raw input, separated from meaning. <see cref="InputSystemSource"/> is the implementation;
+    /// everything that reads controls — the router, PlayerController, the HUD's key labels —
+    /// goes through this, so the bindings live in one actions asset.
     /// </summary>
     public interface IPlayerInputSource
     {
@@ -74,6 +75,35 @@ namespace DungeonSong.Player
         /// <summary>True on the frame the ability in <paramref name="slot"/> was pressed.</summary>
         bool AbilityPressed(int slot);
 
+        /// <summary>Number of ability slots this source has bindings for.</summary>
+        int AbilitySlotCount { get; }
+
         bool InteractPressed { get; }
+
+        bool JumpPressed { get; }
+
+        /// <summary>True on the frame jump was let go, for the variable-height jump.</summary>
+        bool JumpReleased { get; }
+
+        bool RollPressed { get; }
+
+        bool BlockPressed { get; }
+
+        bool BlockReleased { get; }
+
+        /// <summary>
+        /// What to show the player for an ability slot's control on the device they are using:
+        /// "Q" on keyboard, "RT" on a pad. Empty when unbound.
+        /// </summary>
+        string GetAbilityKeyLabel(int slot);
+
+        /// <summary>What to show the player for the interact control, e.g. "F".</summary>
+        string InteractKeyLabel { get; }
+
+        /// <summary>True once the player's last input came from a gamepad.</summary>
+        bool UsingGamepad { get; }
+
+        /// <summary>Raised when the player switches between keyboard/mouse and a gamepad, so labels can follow.</summary>
+        event System.Action ControlsChanged;
     }
 }

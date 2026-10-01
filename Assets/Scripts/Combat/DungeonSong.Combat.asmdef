@@ -1,7 +1,9 @@
 {
     "name": "DungeonSong.Combat",
     "rootNamespace": "DungeonSong.Combat",
-    "references": [],
+    "references": [
+        "Unity.InputSystem"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

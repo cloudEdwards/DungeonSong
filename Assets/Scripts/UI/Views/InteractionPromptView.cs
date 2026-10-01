@@ -33,6 +33,7 @@ namespace DungeonSong.UI
         [SerializeField, Min(0f)] private float fadeDuration = 0.15f;
 
         private PlayerInteractor interactor;
+        private IPlayerInputSource input;
         private CanvasGroup canvasGroup;
         private IInteractable currentTarget;
         private float alpha;
@@ -58,6 +59,21 @@ namespace DungeonSong.UI
 
             interactor.AvailableChanged += OnAvailableChanged;
             OnAvailableChanged(interactor.Available);
+
+            input = Player.GetComponent<IPlayerInputSource>();
+            if (input != null)
+            {
+                input.ControlsChanged += OnControlsChanged;
+            }
+        }
+
+        // Re-draws the prompt with the other device's key while it is on screen.
+        private void OnControlsChanged()
+        {
+            if (currentTarget != null)
+            {
+                OnAvailableChanged(currentTarget);
+            }
         }
 
         protected override void OnUnbind()
@@ -66,6 +82,12 @@ namespace DungeonSong.UI
             {
                 interactor.AvailableChanged -= OnAvailableChanged;
                 interactor = null;
+            }
+
+            if (input != null)
+            {
+                input.ControlsChanged -= OnControlsChanged;
+                input = null;
             }
         }
 
@@ -89,8 +111,8 @@ namespace DungeonSong.UI
 
         private string ResolveKeyLabel()
         {
-            var source = Player.GetComponent<LegacyInputSource>();
-            return source != null ? source.InteractKeyLabel : "F";
+            string label = (input ?? Player.GetComponent<IPlayerInputSource>())?.InteractKeyLabel;
+            return string.IsNullOrEmpty(label) ? "F" : label;
         }
 
         private void Show()

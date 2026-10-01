@@ -31,11 +31,40 @@ namespace DungeonSong.UI
         private float refreshInterval = 0.05f;
 
         private readonly List<AbilitySlotView> slots = new List<AbilitySlotView>(4);
+        private readonly List<int> slotIndices = new List<int>(4);
+        private IPlayerInputSource input;
         private float refreshTimer;
 
         protected override void OnBind()
         {
             BuildSlots();
+
+            input = Player.GetComponent<IPlayerInputSource>();
+            if (input != null)
+            {
+                input.ControlsChanged += RefreshKeyLabels;
+            }
+        }
+
+        protected override void OnUnbind()
+        {
+            if (input != null)
+            {
+                input.ControlsChanged -= RefreshKeyLabels;
+                input = null;
+            }
+        }
+
+        /// <summary>Re-reads every key label, so the bar shows pad buttons while a pad is in use.</summary>
+        private void RefreshKeyLabels()
+        {
+            for (int i = 0; i < slots.Count; i++)
+            {
+                if (slots[i] != null)
+                {
+                    slots[i].SetKeyLabel(ResolveKeyLabel(slotIndices[i]));
+                }
+            }
         }
 
         private void BuildSlots()
@@ -57,6 +86,7 @@ namespace DungeonSong.UI
             }
 
             slots.Clear();
+            slotIndices.Clear();
 
             AbilityLoadout loadout = Player.Abilities;
             if (loadout == null)
@@ -77,6 +107,7 @@ namespace DungeonSong.UI
                 entry.Bind(ability, ResolveKeyLabel(i));
                 entry.Refresh();
                 slots.Add(entry);
+                slotIndices.Add(i);
             }
         }
 
@@ -84,7 +115,7 @@ namespace DungeonSong.UI
         {
             if (readKeysFromInput)
             {
-                var source = Player.GetComponent<LegacyInputSource>();
+                var source = Player.GetComponent<IPlayerInputSource>();
                 if (source != null)
                 {
                     string label = source.GetAbilityKeyLabel(slot);

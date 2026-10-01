@@ -76,6 +76,15 @@ namespace DungeonSong.UI
             }
         }
 
+        /// <summary>Shows a different key, e.g. after the player picks up a gamepad.</summary>
+        public void SetKeyLabel(string keyLabel)
+        {
+            if (keyText != null)
+            {
+                keyText.text = keyLabel;
+            }
+        }
+
         /// <summary>Refreshes the volatile parts: cooldown, charges, availability.</summary>
         public void Refresh()
         {

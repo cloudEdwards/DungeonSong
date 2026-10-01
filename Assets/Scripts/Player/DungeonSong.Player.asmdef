@@ -2,7 +2,8 @@
     "name": "DungeonSong.Player",
     "rootNamespace": "DungeonSong.Player",
     "references": [
-        "DungeonSong.Combat"
+        "DungeonSong.Combat",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

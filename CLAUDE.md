@@ -122,15 +122,22 @@ players have saves.
 may need it. Hero-Knight-derived code keeps that pack's `m_` prefix (`m_body2d`,
 `m_animator`); newer scripts don't.
 
-**Input.** Still the legacy `Input.*` API. Abilities, attacks and interact go through
-`LegacyInputSource` (`IPlayerInputSource`); `PlayerController` still reads movement, jump,
-roll and block directly. Input System 1.19 and `InputSystem_Actions` are installed but unused;
-`activeInputHandler: 2` (Both) keeps the legacy calls working. Don't half-migrate: a move to
-the Input System is a new `IPlayerInputSource` plus converting `PlayerController` together.
+**Input.** Input System 1.19 only. All controls are actions in the project-wide
+`Assets/InputSystem_Actions.inputactions` (`Player` map; `Debug` map for F1). Everything reads
+them through `IPlayerInputSource`, implemented by `InputSystemSource` — the router, the HUD's
+key labels, and `PlayerController` (movement, jump, roll, block). Never call the legacy
+`Input.*` API: `NoLegacyInputTests` fails the build if anything under `Assets/Scripts` does.
+Keyboard A/D keep the old `GetAxis` ramp via `InputAxisSmoothing`. Active Input Handling
+stays on **Both** (`activeInputHandler: 2`) by the user's choice — do not switch it to
+Input System only.
 
 **Keys.** Q Eldritch Blast · E Divine Smite · R Burning Hands · C Cure Wounds · Tab Short
-Rest · F interact / long rest at a campfire. Bindings live on `LegacyInputSource` on the
-`KnightAxios` prefab; the HUD reads them.
+Rest · F interact / long rest · F1 hitbox outlines. Gamepad (Hollow Knight-style): stick
+move · A jump · X attack · Y interact · RB roll · LB block · RT Eldritch Blast · LT Divine
+Smite · B Burning Hands · D↓ Cure Wounds · Select Short Rest. HUD labels follow the device
+last used (`IPlayerInputSource.ControlsChanged`). To rebind, edit the binding in
+`InputSystem_Actions`; the HUD labels follow. A new ability slot needs an `AbilityN` action
+there and an entry in `InputSystemSource`'s **Ability Action Names**.
 
 ## Architecture
 

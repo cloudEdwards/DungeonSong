@@ -83,7 +83,9 @@ Spells are abilities. There is no spell system.
 3. On the player, add a **`ProjectileAbility`** component. Set its **Definition** and
    **Projectile**, and point **Muzzle** at the `Muzzle` child.
 4. Add the component to a slot on **`AbilityLoadout`**.
-5. Bind a key: add it to **Ability Keys** on `LegacyInputSource` at the same index.
+5. Bind a key: add an `AbilityN` action with its binding to the `Player` map in
+   `Assets/InputSystem_Actions.inputactions`, and add its name to **Ability Action Names** on
+   the knight's `InputSystemSource` at the same index as the loadout slot.
 
 The HUD picks it up automatically — icon, key label, cooldown sweep and greying out all come
 from the definition.
@@ -264,6 +266,6 @@ It works on the player too — `HitFeedback` listens to `IHealth`, which both si
 | Ability greyed out | Cooldown, unaffordable cost, no charges, or an unmet requirement — `AreRequirementsMet` says which |
 | Spell costs nothing | **Cost** has no resource assigned — that is how cantrips are made |
 | Slots refill when changing rooms | A new resource is missing from `ResourcePool`, or two resources share an **Id** |
-| Prompt shows the wrong key | The prompt reads `LegacyInputSource`; check **Interact Key** on the prefab, not just the script default |
+| Prompt shows the wrong key | Labels come from the bindings in `InputSystem_Actions` (Keyboard&Mouse group); check the binding there |
 | Enemy does not flash | Sprite material is not `SpriteFlash.mat`, or `HitFeedback` has no health source |
 | Player is stuck unable to move | A movement lock leaked. Locks are reference-counted and released on cancel/death; `PlayerActor.ClearMovementLocks()` is the escape hatch |

@@ -96,9 +96,9 @@ namespace DungeonSong.Player
 
         private void PollAbilities()
         {
-            // Slot count is small and fixed; a loop here costs nothing and keeps the
-            // binding table in one place.
-            for (int slot = 0; slot < 8; slot++)
+            // Slot count is small; a loop here costs nothing and keeps the binding table in
+            // the actions asset.
+            for (int slot = 0; slot < source.AbilitySlotCount; slot++)
             {
                 if (source.AbilityPressed(slot))
                 {

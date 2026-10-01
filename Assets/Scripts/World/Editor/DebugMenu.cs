@@ -24,7 +24,7 @@ namespace DungeonSong.World.Editor
                 HitboxDebug.Visible = show;
             }
 
-            Debug.Log($"Hitbox outlines {(show ? "on" : "off")}. Toggle in play with {HitboxDebug.ToggleKey}.");
+            Debug.Log($"Hitbox outlines {(show ? "on" : "off")}. Toggle in play with {HitboxDebug.ToggleLabel}.");
         }
 
         [MenuItem(HitboxItem, true)]
