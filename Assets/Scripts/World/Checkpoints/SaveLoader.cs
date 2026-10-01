@@ -29,6 +29,13 @@ namespace DungeonSong.World
             }
 #endif
 
+            // Only resume when play starts in a gameplay scene. A menu, or the test runner's
+            // empty start scene, has no player and must not be yanked to the campfire.
+            if (Object.FindAnyObjectByType<DungeonSong.Player.PlayerActor>() == null)
+            {
+                return;
+            }
+
             SaveData save = GameSave.Service.Load();
             if (save == null || !save.Checkpoint.IsValid)
             {

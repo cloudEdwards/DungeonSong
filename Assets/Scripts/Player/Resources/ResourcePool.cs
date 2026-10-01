@@ -26,8 +26,13 @@ namespace DungeonSong.Player
         // Health survives scene loads through PlayerDataDto for the same reason.
         private static readonly Dictionary<string, float> session = new Dictionary<string, float>();
 
+        /// <summary>
+        /// Forgets every carried-over pool value, so the next player starts from each
+        /// resource's starting amount. Runs at the start of every play session; call it for a
+        /// new game, and between tests.
+        /// </summary>
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ClearSession() => session.Clear();
+        public static void ResetSession() => session.Clear();
 
         private readonly Dictionary<ResourceDefinition, float> current = new Dictionary<ResourceDefinition, float>();
         private readonly Dictionary<ResourceDefinition, float> regenDelay = new Dictionary<ResourceDefinition, float>();

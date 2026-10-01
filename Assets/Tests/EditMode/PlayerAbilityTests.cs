@@ -28,6 +28,7 @@ namespace DungeonSong.Enemies.Tests
             }
 
             CheckpointService.Clear();
+            ResourcePool.ResetSession();
         }
 
         private static ResourceDefinition CreateResource(float max = 100f)

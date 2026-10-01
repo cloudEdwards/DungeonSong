@@ -232,6 +232,10 @@ namespace DungeonSong.Player
         public void RespawnAt(Vector2 position, int facing)
         {
             ClearMovementLocks();
+
+            // Health first: it revives the body, which death left static, and a static body
+            // rejects the velocity reset below.
+            Health?.RestoreToFull();
             transform.position = position;
 
             if (Body != null)
@@ -240,7 +244,6 @@ namespace DungeonSong.Player
             }
 
             Motion?.SetFacing(facing == 0 ? 1 : facing);
-            Health?.RestoreToFull();
 
             for (int i = 0; i < modules.Count; i++)
             {
