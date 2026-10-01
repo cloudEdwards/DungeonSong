@@ -113,6 +113,25 @@ namespace DungeonSong.Player
             SetAmount(definition, Mathf.Min(definition.MaxAmount, current[definition] + amount));
         }
 
+        /// <summary>
+        /// Sets a pool by its <see cref="ResourceDefinition.Id"/>, clamped to its range. For
+        /// loading saves. Returns false when this player carries no resource with that id.
+        /// </summary>
+        public bool SetAmountById(string id, float amount)
+        {
+            for (int i = 0; i < resources.Length; i++)
+            {
+                ResourceDefinition definition = resources[i];
+                if (definition != null && definition.Id == id)
+                {
+                    SetAmount(definition, Mathf.Clamp(amount, 0f, definition.MaxAmount));
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         /// <summary>True when the pool is at its maximum.</summary>
         public bool IsFull(ResourceDefinition definition)
         {

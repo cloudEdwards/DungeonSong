@@ -29,6 +29,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IHealth
     {
         m_animator = GetComponent<Animator>();
         textController = GetComponentInChildren<TextController>();
+
+        // Health lives in PlayerDataDto and survives scene loads, so a player who died in
+        // another scene arrives here at 0. That player is being respawned, not killed
+        // again: without this, the death animation would play on arrival.
+        if (playerData.Health <= 0f)
+        {
+            playerData.Health = playerData.MaxHealth;
+        }
     }
 
     public void Damage(float damage)
@@ -217,6 +225,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IHealth
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             GetComponent<BoxCollider2D>().enabled = true;
             GetComponent<PlayerController>().enabled = true;
+
+            // Death has no exit transition in the Hero Knight controller, so return to
+            // Idle by hand or the respawned player stays in the death pose.
+            if (m_animator != null)
+            {
+                m_animator.ResetTrigger("Death");
+                m_animator.Play("Idle", 0, 0f);
+            }
         }
 
         HealthChanged?.Invoke(Current, Max);
@@ -229,6 +245,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IHealth
         return playerData.Health - before;
     }
 
+    // The single death path, reached from a killing TakeDamage or from Update for the legacy
+    // Damage() call. Plays the death animation and stops the body here, so it happens on the
+    // frame health hits zero rather than whenever Update next notices.
     private void RaiseDied()
     {
         if (isDead)
@@ -237,6 +256,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IHealth
         }
 
         isDead = true;
+
+        if (m_animator != null)
+        {
+            m_animator.ResetTrigger("Hurt");
+            m_animator.SetBool("noBlood", m_noBlood);
+            m_animator.SetTrigger("Death");
+        }
+
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<PlayerController>().enabled = false;
+
         Died?.Invoke();
     }
 
@@ -251,13 +282,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IHealth
 
         if (! isDead && playerData.Health <= 0)
         {
-            m_animator.SetBool("noBlood", m_noBlood);
-            m_animator.SetTrigger("Death");
-
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            GetComponent<BoxCollider2D>().enabled = false;
-            GetComponent<PlayerController>().enabled = false;
-
             // Raises Died exactly once, which is what PlayerRespawner listens for.
             RaiseDied();
         }

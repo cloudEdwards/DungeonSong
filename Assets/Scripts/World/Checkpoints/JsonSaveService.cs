@@ -13,7 +13,7 @@ namespace DungeonSong.World
     /// </summary>
     public class JsonSaveService : ISaveService
     {
-        private const string FileName = "dungeonsong.save.json";
+        public const string FileName = "dungeonsong.save.json";
 
         private static string Path => System.IO.Path.Combine(Application.persistentDataPath, FileName);
 

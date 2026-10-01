@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using DungeonSong.Player;
 
 namespace DungeonSong.World
@@ -83,6 +84,15 @@ namespace DungeonSong.World
             if (CheckpointService.HasCheckpoint)
             {
                 CheckpointState checkpoint = CheckpointService.Current;
+
+                // Rested in another scene: go there. This player belongs to the scene being
+                // left, so the new scene's player is the one placed at the campfire.
+                if (!string.IsNullOrEmpty(checkpoint.SceneName) && checkpoint.SceneName != SceneManager.GetActiveScene().name)
+                {
+                    CheckpointTravel.Begin(checkpoint, null, respawn: true);
+                    return;
+                }
+
                 position = checkpoint.Position;
                 facing = checkpoint.Facing;
             }

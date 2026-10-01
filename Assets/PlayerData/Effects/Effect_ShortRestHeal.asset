@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abdf6dc4bccf942a6adc2b5f325ba446, type: 3}
   m_Name: Effect_ShortRestHeal
   m_EditorClassIdentifier: DungeonSong.Player::DungeonSong.Player.HealEffect
-  Description: 'Short rest: heal half of max health.'
+  Description: 'Short rest: heal 30% of max health.'
   Amount: 0
-  PercentOfMax: 0.5
+  PercentOfMax: 0.3

@@ -117,7 +117,8 @@ philosophy.
 ### `Assets/Scripts/World` — `DungeonSong.World`
 
 `IRestPoint`, `RestEvents`, `Campfire`, `RequireNearRestPoint`, `CheckpointService`,
-`SaveData`, `ISaveService`, `JsonSaveService`, `PlayerRespawner`
+`SaveData`, `ISaveService`, `JsonSaveService`, `SaveLoader`, `PlayerRespawner`;
+Editor: `SaveMenu` (Dungeon ▸ Save)
 
 ### `Assets/Scripts/UI` — `DungeonSong.UI`
 
@@ -176,9 +177,15 @@ max of 2 and a cost of 1, so no casting code knows slots exist.
 - **Short rest** (`Ability_ShortRest`) is an `EffectAbility` costing `{Loyalty, 100}` with
   **Spend Cost On Resolve** on, so an interrupted rest keeps the Loyalty, and **Suspend In
   Air** on, so resting mid-jump hangs in place like Silksong's bind. Its effects are
-  `HealEffect` (50% of max) + `RestoreResourcesEffect(Short)`.
+  `HealEffect` (30% of max) + `RestoreResourcesEffect(Short)`.
 - **Long rest** is the campfire. Loyalty is untouched.
-- **Death** empties Loyalty; respawning refills what a long rest would, without saving.
+- **Death** empties Loyalty; respawning refills what a long rest would, without saving. If the
+  checkpoint is in another scene, `CheckpointTravel` loads it first — the same trip a save resume takes.
+- **Save and load.** The campfire writes the save. `SaveLoader` reads it once when a play
+  session starts: it loads the save's scene if needed, puts the player at that campfire via
+  `RespawnAt`, and writes the saved Loyalty and slots back. In the Editor,
+  **Dungeon ▸ Save ▸ Load Save On Play** turns this off so any scene can be tested directly;
+  **Delete Save** and **Reveal Save File** sit beside it.
 - Pool values live for the whole session in `ResourcePool`, keyed by resource **Id**, because
   the player object is rebuilt in every scene. Slot counts are fixed data on the assets
   today; a levelling system raises **Max Amount**.
@@ -217,7 +224,7 @@ max of 2 and a cost of 1, so no casting code knows slots exist.
 4. **Attack timing is numeric, not animation-driven.** The enemy framework supports clip
    events; the player does not yet. Worth adding when real attack animations land.
 5. **Save data is minimal** — checkpoint, health and resource pools. No world state,
-   unlocks or inventory, and **nothing loads it yet**: `GameSave.Service.Load()` has no caller.
+   unlocks or inventory. One save file, no slots.
 6. **`SpriteFlash` is unlit.** Fine today (no `Light2D` in any scene); needs a URP 2D lit
    variant if lights are added.
 7. **Two enums named `AttackPhase`** existed briefly; the player's is `PlayerAttackPhase`.
