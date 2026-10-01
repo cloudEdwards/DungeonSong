@@ -2,6 +2,7 @@
     "name": "DungeonSong.PlayMode.Tests",
     "rootNamespace": "DungeonSong.PlayMode.Tests",
     "references": [
+        "DungeonSong.Enemies",
         "DungeonSong.Combat",
         "DungeonSong.World",
         "DungeonSong.Player",

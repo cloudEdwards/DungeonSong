@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 8018609195793398179}
   - component: {fileID: 4045904284171071343}
   - component: {fileID: 750431340259411405}
+  - component: {fileID: 8248034610747851845}
   - component: {fileID: 4640375347576997775}
   - component: {fileID: 2230862413776060186}
   - component: {fileID: 1143459458321392286}
@@ -478,6 +479,26 @@ MonoBehaviour:
   faceTarget: 1
   alertAnimationKey: alert
   alertNoiseRadius: 0
+--- !u!114 &8248034610747851845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7029461636745563250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c45a75f5414424884b676c26e4c59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DungeonSong.Enemies::DungeonSong.Enemies.ChaseState
+  priorityOverride: -1
+  speedScale: 1
+  stopDistance: 1.2
+  verticalPursuit: 0
+  stopAtEdges: 1
+  jumpAtLedges: 0
+  pursueLastKnownPosition: 1
+  chaseAnimationKey: run
 --- !u!114 &4640375347576997775
 MonoBehaviour:
   m_ObjectHideFlags: 0
