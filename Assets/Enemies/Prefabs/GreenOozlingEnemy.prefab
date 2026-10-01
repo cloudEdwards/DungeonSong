@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 6377735128197701017}
   - component: {fileID: 8060670696369824586}
   m_Layer: 11
-  m_Name: TestEnemy
+  m_Name: GreenOozlingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

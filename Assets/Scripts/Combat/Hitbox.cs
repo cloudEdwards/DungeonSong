@@ -68,6 +68,7 @@ namespace DungeonSong.Combat
             hitCount = 0;
             IsActive = true;
             SetCollidersEnabled(true);
+            HitboxDebug.NotifyActivated(this);
         }
 
         /// <summary>Closes the hitbox. Safe to call when already inactive.</summary>
@@ -150,7 +151,20 @@ namespace DungeonSong.Combat
             }
 
             Gizmos.color = new Color(1f, 0.3f, 0.2f, 0.8f);
-            Gizmos.DrawWireCube(transform.position, Vector3.one * 0.25f);
+            Gizmos.matrix = transform.localToWorldMatrix;
+
+            Collider2D shape = GetComponent<Collider2D>();
+            if (shape == null)
+            {
+                Gizmos.DrawWireCube(Vector3.zero, Vector3.one * 0.25f);
+                return;
+            }
+
+            Vector3[] outline = HitboxDebug.GetOutline(shape);
+            for (int i = 0; i < outline.Length; i++)
+            {
+                Gizmos.DrawLine(outline[i], outline[(i + 1) % outline.Length]);
+            }
         }
     }
 }

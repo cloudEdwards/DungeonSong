@@ -105,6 +105,9 @@ namespace DungeonSong.Player
         [Tooltip("Only apply the recoil while airborne, so a grounded down-strike does not launch the player.")]
         public bool RecoilRequiresAirborne = true;
 
+        [Tooltip("Seconds of invulnerability granted when the recoil fires, so bouncing off an enemy is not punished by its contact damage.")]
+        [Min(0f)] public float InvulnerabilityOnRecoil;
+
         [Header("Interrupts")]
         [Tooltip("What the player may do while this attack runs.")]
         public AttackCancel CancelRules = AttackCancel.Movement | AttackCancel.Jump | AttackCancel.IntoAttack;

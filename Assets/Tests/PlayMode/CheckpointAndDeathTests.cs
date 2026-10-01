@@ -36,12 +36,17 @@ namespace DungeonSong.PlayMode.Tests
         private const float Timeout = 10f;
 
         private ISaveService realSave;
+        private bool realRunInBackground;
         private InMemorySaveService save;
         private readonly List<string> warnings = new List<string>();
 
         [UnitySetUp]
         public IEnumerator SetUp()
         {
+            // Play mode stops advancing frames while the Editor is unfocused, which stalls
+            // any test that waits on frames or physics.
+            realRunInBackground = Application.runInBackground;
+            Application.runInBackground = true;
             realSave = GameSave.Service;
             save = new InMemorySaveService();
             GameSave.Service = save;
@@ -67,6 +72,7 @@ namespace DungeonSong.PlayMode.Tests
                 UnityEngine.Object.Destroy(travel);
             }
 
+            Application.runInBackground = realRunInBackground;
             GameSave.Service = realSave;
             CheckpointService.Clear();
             ResourcePool.ResetSession();

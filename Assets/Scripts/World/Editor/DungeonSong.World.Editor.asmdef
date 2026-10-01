@@ -2,7 +2,8 @@
     "name": "DungeonSong.World.Editor",
     "rootNamespace": "DungeonSong.World.Editor",
     "references": [
-        "DungeonSong.World"
+        "DungeonSong.World",
+        "DungeonSong.Combat"
     ],
     "includePlatforms": [
         "Editor"

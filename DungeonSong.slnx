@@ -6,6 +6,6 @@
   <Project Path="DungeonSong.Enemies.Tests.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="DungeonSong.UI.csproj" />
-  <Project Path="DungeonSong.PlayMode.Tests.csproj" />
   <Project Path="DungeonSong.World.Editor.csproj" />
+  <Project Path="DungeonSong.PlayMode.Tests.csproj" />
 </Solution>

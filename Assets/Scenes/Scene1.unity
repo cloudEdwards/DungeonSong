@@ -715,7 +715,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4899469246939108058, guid: e4d331d72c8af4eafb123e4f2fe847c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.710545
+      value: 3.460545
       objectReference: {fileID: 0}
     - target: {fileID: 4899469246939108058, guid: e4d331d72c8af4eafb123e4f2fe847c6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1096,6 +1096,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc917532ed1fb483b9053b09b0d5fe92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+--- !u!1001 &619249836
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.8928103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.3504505
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029461636745563250, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_Name
+      value: GrayOozlingEnemy (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
 --- !u!1001 &636832771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1106,7 +1163,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4899469246939108058, guid: e4d331d72c8af4eafb123e4f2fe847c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.8699036
+      value: -0.63009644
       objectReference: {fileID: 0}
     - target: {fileID: 4899469246939108058, guid: e4d331d72c8af4eafb123e4f2fe847c6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1525,6 +1582,63 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1001 &1214275732
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.790569
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.512487
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899469246939108058, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029461636745563250, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
+      propertyPath: m_Name
+      value: GrayOozlingEnemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 192d6004db5e74a0ca47d83526aa08cb, type: 3}
 --- !u!1 &1222000196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2642,3 +2756,5 @@ SceneRoots:
   - {fileID: 275087749}
   - {fileID: 2041065701}
   - {fileID: 192330780}
+  - {fileID: 1214275732}
+  - {fileID: 619249836}

@@ -55,7 +55,7 @@ Deeper docs live beside the code — read them before changing those systems:
 
 ```bash
 unity command run_tests --mode EditMode --caller plugin --skill <skill>
-unity command run_tests --mode PlayMode --caller plugin --skill <skill>   # async: poll test_status
+unity command run_tests --mode PlayMode --async_tests true --caller plugin --skill <skill>  # poll test_status
 ```
 
 - Prefer EditMode: build a player from `PlayerActor` + modules + fakes (`FakeMotionContext`,
@@ -63,6 +63,8 @@ unity command run_tests --mode PlayMode --caller plugin --skill <skill>   # asyn
   `Tick(dt)`. `Awake`/`OnEnable`/`Destroy(obj, t)`/coroutines don't run in EditMode, so anything
   relying on those (e.g. `ResourceOnHit`, `HitboxBurstAbility`) is tested in PlayMode.
 - Call `ResourcePool.ResetSession()` and `CheckpointService.Clear()` in setup and teardown.
+- PlayMode tests set `Application.runInBackground = true` in setup (and restore it): the
+  Editor stops advancing frames while unfocused, which hangs any test waiting on frames.
 - PlayMode tests load `Scene1`/`Scene2` (both in Build Settings), and must leave
   `PlayerDataDto` health full: it is an asset, so the value persists in the Editor.
 - Shipped tuning that the user has asked for (e.g. short rest heals 30%, key layout
@@ -89,6 +91,8 @@ If `unity` isn't on `PATH` (a shell started before the CLI was installed), call
   `Application.runInBackground = true` (runtime only) when driving Play mode from the CLI.
 - `capture_game_view --save_path` writes under `Assets/` even for a `Temp/` path. Delete what
   it creates.
+- Hitbox outlines: **F1** in play, or **Dungeon ▸ Debug ▸ Show Hitboxes** for the start state
+  (`HitboxDebug`). Useful because the up/down attacks reuse the sideways slash animation.
 
 ## Conventions
 

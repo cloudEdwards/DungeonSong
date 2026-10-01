@@ -139,7 +139,8 @@ Editor: `SaveMenu` (Dungeon ▸ Save)
 
 | Input | Action |
 | --- | --- |
-| Left mouse | Attack. Direction comes from movement input: neutral = forward, up, down, diagonals in the air, wall attack while wall-sliding |
+| Left mouse | Attack. Direction comes from movement input: neutral = forward, **W** = up, **S** = down (a pogo in the air: hitting something bounces you up), wall attack while wall-sliding. In the air, W/S plus A/D reads as a diagonal; with no diagonal attacks authored it falls back to the up or down attack |
+| **F1** | Debug: toggle hitbox outlines in the Game view (start state: **Dungeon ▸ Debug ▸ Show Hitboxes**) |
 | **F** | Interact — "Press F to take a Long Rest" at a campfire |
 | **Q** | Eldritch Blast — warlock cantrip, cooldown only |
 | **E** | Divine Smite — 1 Paladin slot; next 3 swings deal bonus Holy damage |

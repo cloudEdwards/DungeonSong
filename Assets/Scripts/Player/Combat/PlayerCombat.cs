@@ -241,6 +241,38 @@ namespace DungeonSong.Player
         /// </summary>
         private PlayerAttackDefinition SelectAttack(AttackDirection direction)
         {
+            PlayerAttackDefinition chosen = SelectAttackFor(direction);
+
+            // Input reads W/S plus a horizontal key in the air as a diagonal. Until diagonal
+            // attacks are authored, that must still up-slash or pogo rather than do nothing.
+            if (chosen == null && TryGetVertical(direction, out AttackDirection vertical))
+            {
+                chosen = SelectAttackFor(vertical);
+            }
+
+            return chosen;
+        }
+
+        private static bool TryGetVertical(AttackDirection direction, out AttackDirection vertical)
+        {
+            switch (direction)
+            {
+                case AttackDirection.DiagonalUpForward:
+                    vertical = AttackDirection.Up;
+                    return true;
+
+                case AttackDirection.DiagonalDownForward:
+                    vertical = AttackDirection.Down;
+                    return true;
+
+                default:
+                    vertical = direction;
+                    return false;
+            }
+        }
+
+        private PlayerAttackDefinition SelectAttackFor(AttackDirection direction)
+        {
             AttackContext context = CurrentContext();
 
             if (comboNext != null && comboWindowTimer > 0f && Matches(comboNext, direction, context))
@@ -344,6 +376,13 @@ namespace DungeonSong.Player
                 Debug.Log($"[PlayerCombat] {definition.DisplayName} ({definition.Direction}) in {CurrentContext()}", this);
             }
 
+            // No wind-up means live now, not next frame: a pogo that waits a frame lets the
+            // player land on the enemy before the hitbox opens.
+            if (definition.Startup <= 0f)
+            {
+                EnterPhase(PlayerAttackPhase.Active);
+            }
+
             return true;
         }
 
@@ -445,6 +484,11 @@ namespace DungeonSong.Player
 
             Vector2 velocity = Owner.Motion.Velocity;
             Owner.Motion.SetVelocity(new Vector2(velocity.x, current.RecoilOnHit));
+
+            if (current.InvulnerabilityOnRecoil > 0f)
+            {
+                Owner.Health?.GrantInvulnerability(current.InvulnerabilityOnRecoil);
+            }
         }
 
         private void ApplySelfVelocity()

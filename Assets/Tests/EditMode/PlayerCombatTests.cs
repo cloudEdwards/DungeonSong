@@ -133,6 +133,51 @@ namespace DungeonSong.Enemies.Tests
         }
 
         [Test]
+        public void AirDiagonal_WithNoDiagonalAttack_FallsBackToTheVerticalAttack()
+        {
+            // In the air, W/S plus a horizontal key reads as a diagonal. With no diagonal
+            // attacks authored, that must still up-slash or pogo rather than do nothing.
+            PlayerAttackDefinition up = CreateAttack(AttackDirection.Up);
+            PlayerAttackDefinition pogo = CreateAttack(AttackDirection.Down, AttackContext.Airborne);
+            var (_, combat, motion) = CreatePlayer(up, pogo);
+            motion.Grounded = false;
+
+            Assert.IsTrue(combat.TryAttack(AttackDirection.DiagonalDownForward));
+            Assert.AreSame(pogo, combat.CurrentAttack, "Down + forward in the air is still a pogo.");
+
+            combat.CancelAttack();
+            Assert.IsTrue(combat.TryAttack(AttackDirection.DiagonalUpForward));
+            Assert.AreSame(up, combat.CurrentAttack);
+        }
+
+        [Test]
+        public void AirDiagonal_PrefersADiagonalAttackWhenOneExists()
+        {
+            PlayerAttackDefinition pogo = CreateAttack(AttackDirection.Down, AttackContext.Airborne);
+            PlayerAttackDefinition diagonal = CreateAttack(AttackDirection.DiagonalDownForward, AttackContext.Airborne);
+            var (_, combat, motion) = CreatePlayer(pogo, diagonal);
+            motion.Grounded = false;
+
+            combat.TryAttack(AttackDirection.DiagonalDownForward);
+
+            Assert.AreSame(diagonal, combat.CurrentAttack);
+        }
+
+        [Test]
+        public void ZeroStartup_IsLiveTheMomentItStarts()
+        {
+            // A pogo with a wind-up lets the player land on the enemy before the hitbox opens.
+            PlayerAttackDefinition pogo = CreateAttack(AttackDirection.Down, AttackContext.Airborne);
+            pogo.Startup = 0f;
+            var (_, combat, motion) = CreatePlayer(pogo);
+            motion.Grounded = false;
+
+            combat.TryAttack(AttackDirection.Down);
+
+            Assert.AreEqual(PlayerAttackPhase.Active, combat.Phase, "No frame passes before the hitbox opens.");
+        }
+
+        [Test]
         public void AirborneOnlyAttack_IsNotSelectableOnTheGround()
         {
             PlayerAttackDefinition pogo = CreateAttack(AttackDirection.Down, AttackContext.Airborne);
@@ -277,6 +322,97 @@ namespace DungeonSong.Enemies.Tests
 
             Assert.IsFalse(combat.TryAttack(AttackDirection.Up), "No up attack is configured, so nothing should happen.");
             Assert.IsFalse(combat.IsAttacking);
+        }
+    }
+
+    /// <summary>
+    /// The shipped attack set: neutral, W and S plus attack, on the ground and in the air.
+    /// Pins the agreed controls so a stray edit to an attack asset shows up as a failure.
+    /// </summary>
+    public class AttackCatalogDataTests
+    {
+        private GameObject go;
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (go != null)
+            {
+                Object.DestroyImmediate(go);
+            }
+        }
+
+        private (PlayerCombat combat, FakeMotionContext motion) CreatePlayerWithShippedAttacks()
+        {
+            var knight = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/KnightAxios.prefab");
+            UnityEditor.SerializedProperty shipped = new UnityEditor.SerializedObject(knight.GetComponent<PlayerCombat>()).FindProperty("attacks");
+
+            go = new GameObject("TestPlayer");
+            go.AddComponent<Rigidbody2D>();
+            FakeMotionContext motion = go.AddComponent<FakeMotionContext>();
+            PlayerActor actor = go.AddComponent<PlayerActor>();
+            PlayerCombat combat = go.AddComponent<PlayerCombat>();
+
+            var so = new UnityEditor.SerializedObject(combat);
+            UnityEditor.SerializedProperty list = so.FindProperty("attacks");
+            list.arraySize = shipped.arraySize;
+            for (int i = 0; i < shipped.arraySize; i++)
+            {
+                list.GetArrayElementAtIndex(i).objectReferenceValue = shipped.GetArrayElementAtIndex(i).objectReferenceValue;
+            }
+
+            so.ApplyModifiedPropertiesWithoutUndo();
+            actor.Initialize();
+            return (combat, motion);
+        }
+
+        private static string Select(PlayerCombat combat, AttackDirection direction)
+        {
+            combat.CancelAttack();
+            return combat.TryAttack(direction) ? combat.CurrentAttack.HitboxKey : "nothing";
+        }
+
+        [TestCase(true, AttackDirection.Forward, "Forward")]
+        [TestCase(true, AttackDirection.Up, "Up")]
+        [TestCase(true, AttackDirection.Down, "Down")]
+        [TestCase(false, AttackDirection.Forward, "Forward")]
+        [TestCase(false, AttackDirection.Up, "Up")]
+        [TestCase(false, AttackDirection.Down, "Down")]
+        [TestCase(false, AttackDirection.DiagonalUpForward, "Up")]
+        [TestCase(false, AttackDirection.DiagonalDownForward, "Down")]
+        public void Input_SelectsTheMatchingDirectionalAttack(bool grounded, AttackDirection direction, string expectedHitbox)
+        {
+            var (combat, motion) = CreatePlayerWithShippedAttacks();
+            motion.Grounded = grounded;
+
+            Assert.AreEqual(expectedHitbox, Select(combat, direction));
+        }
+
+        [Test]
+        public void AirDownAttack_IsAPogo_AndGroundDownIsNot()
+        {
+            var (combat, motion) = CreatePlayerWithShippedAttacks();
+
+            motion.Grounded = false;
+            combat.TryAttack(AttackDirection.Down);
+            Assert.Greater(combat.CurrentAttack.RecoilOnHit, 0f, "A down attack that connects in the air bounces the player.");
+
+            motion.Grounded = true;
+            combat.CancelAttack();
+            combat.TryAttack(AttackDirection.Down);
+            Assert.AreEqual(0f, combat.CurrentAttack.RecoilOnHit, "No bounce from a grounded down slash.");
+        }
+
+        [Test]
+        public void Pogo_IsInstant_AndProtectsTheBounce()
+        {
+            var (combat, motion) = CreatePlayerWithShippedAttacks();
+            motion.Grounded = false;
+
+            combat.TryAttack(AttackDirection.Down);
+
+            Assert.AreEqual(0f, combat.CurrentAttack.Startup, "No wind-up, or the player lands on the enemy first.");
+            Assert.Greater(combat.CurrentAttack.InvulnerabilityOnRecoil, 0f, "A landed pogo grants i-frames.");
         }
     }
 }

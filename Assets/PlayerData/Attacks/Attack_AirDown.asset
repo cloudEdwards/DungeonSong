@@ -19,7 +19,7 @@ MonoBehaviour:
   AllowedContext: 2
   ComboIndex: 0
   Priority: 10
-  Startup: 0.06
+  Startup: 0
   Active: 0.12
   Recovery: 0.14
   Cooldown: 0
@@ -39,6 +39,7 @@ MonoBehaviour:
   SelfVelocity: {x: 0, y: 0}
   RecoilOnHit: 9
   RecoilRequiresAirborne: 1
+  InvulnerabilityOnRecoil: 0.3
   CancelRules: 15
   Cost:
     Resource: {fileID: 0}

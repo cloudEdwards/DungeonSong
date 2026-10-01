@@ -98,7 +98,14 @@ namespace DungeonSong.Combat
                 return hurtbox.Owner;
             }
 
-            // Actors without an explicit hurtbox (the existing player) still take contact damage.
+            // Any other trigger is a sword or a sensor, not a body: without this, the player's
+            // down-slash overlapping an enemy let that enemy's contact damage hit the player.
+            if (other.isTrigger)
+            {
+                return null;
+            }
+
+            // Actors without an explicit hurtbox still take contact damage through their body.
             return other.GetComponentInParent<IDamageable>();
         }
     }

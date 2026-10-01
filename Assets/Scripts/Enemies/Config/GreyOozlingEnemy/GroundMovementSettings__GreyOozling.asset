@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b923e021c4f48ae97656b7a07aef9f, type: 3}
+  m_Name: GroundMovementSettings__GreyOozling
+  m_EditorClassIdentifier: 
+  MoveSpeed: 4
+  Acceleration: 20
+  Deceleration: 30
+  TurnDelay: 0.15
+  KnockbackControlLock: 0.2
+  GravityScale: 3
+  MaxFallSpeed: 18
+  JumpForce: 7
+  DashForce: 10
+  DashDuration: 0.25
+  DashCooldown: 1
